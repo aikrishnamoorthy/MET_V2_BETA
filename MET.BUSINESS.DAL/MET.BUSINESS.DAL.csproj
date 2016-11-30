@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BAC8C54D-2B1C-45E9-86AC-9E960E8AACB5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MET.BUSINESS.DAL</RootNamespace>
+    <AssemblyName>MET.BUSINESS.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Repository\MET.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MET.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\MET.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\MET.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MET.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\sp_helpdiagrams_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\T_ASSIGNMENTS.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\T_ASSIGNMENTS_HIST.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\T_COMPONENT.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\T_CONFIG.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\T_CONFIG_DETAIL.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\T_REFERENCE.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\T_RELEASE.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\T_RELEASE_USER_ACCESS.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\T_SPRINT.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\T_SPRINT_USER_ACCESS.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\T_SYSTEM.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\T_USERS.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\T_WORK_COMPONENT.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\T_WORK_ITEM.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_ASSIGNMENT_GET_CURRENT_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_ASSIGNMENT_GET_HISTORY_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_GET_COMPONENTS_FOR_ITEM_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_GET_COMP_COMPLX_REF_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_GET_COMP_TYPE_REF_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_GET_CONFIG_VALUES_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_GET_ITEM_COMPONENTS_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_GET_WORK_ITEM_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_LANDING_GET_NON_TFS_RELEASE_LIST_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_LANDING_GET_RELEASE_LIST_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_LANDING_GET_SYSTEM_LIST_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_LANDING_SEARCH_RELEASE_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_LANDING_SEARCH_SYSTEM_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_RELEASE_GENERATE_REPORT_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_RELEASE_GET_ATTRIBUTE_LIST_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_RELEASE_GET_RELEASE_META_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_RELEASE_GET_USER_LIST_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_RELEASE_GET_WORK_ITEM_COMPONENT_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_RELEASE_GET_WORK_ITEM_LIST_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_SYSTEM_GET_RECORD_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_TABLEHELP_GET_REF_GROUP_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_TABLEHELP_GET_REF_VALUES_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_USER_GET_DATA_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_USER_GET_PROJECT_LIST_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_USER_GET_SEARCH_ITEMS_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_USER_GET_USER_ITEMS_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\USP_USER_GET_USER_LIST_Result.cs">
+      <DependentUpon>MET.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="Repository\MET.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MET.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Repository\MET.edmx.diagram">
+      <DependentUpon>MET.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Repository\MET.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MET.edmx</DependentUpon>
+      <LastGenOutput>MET.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Repository\MET.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MET.edmx</DependentUpon>
+      <LastGenOutput>MET.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

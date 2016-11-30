@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MET.WEB.UI", "MET.WEB.UI\MET.WEB.UI.csproj", "{2010485D-8D9E-49C3-A672-60EF4F4B53CA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F10BBE54-5405-4AC7-98D9-176A49F0750E} = {F10BBE54-5405-4AC7-98D9-176A49F0750E}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MET.BUSINESS.WEBAPI", "MET.BUSINESS.WEBAPI\MET.BUSINESS.WEBAPI.csproj", "{F10BBE54-5405-4AC7-98D9-176A49F0750E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BAC8C54D-2B1C-45E9-86AC-9E960E8AACB5} = {BAC8C54D-2B1C-45E9-86AC-9E960E8AACB5}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MET.BUSINESS.DAL", "MET.BUSINESS.DAL\MET.BUSINESS.DAL.csproj", "{BAC8C54D-2B1C-45E9-86AC-9E960E8AACB5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2010485D-8D9E-49C3-A672-60EF4F4B53CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2010485D-8D9E-49C3-A672-60EF4F4B53CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2010485D-8D9E-49C3-A672-60EF4F4B53CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2010485D-8D9E-49C3-A672-60EF4F4B53CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F10BBE54-5405-4AC7-98D9-176A49F0750E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F10BBE54-5405-4AC7-98D9-176A49F0750E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F10BBE54-5405-4AC7-98D9-176A49F0750E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F10BBE54-5405-4AC7-98D9-176A49F0750E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAC8C54D-2B1C-45E9-86AC-9E960E8AACB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAC8C54D-2B1C-45E9-86AC-9E960E8AACB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAC8C54D-2B1C-45E9-86AC-9E960E8AACB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAC8C54D-2B1C-45E9-86AC-9E960E8AACB5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,300 @@
+﻿@model MET.WEB.UI.Models.Common.UserBaseModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Deloitte Maintenace Estimation Tool | Home Dashboard</title>
+
+    <!-- Bootstrap -->
+    <link href="~/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="~/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="~/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="~/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="~/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="~/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="~/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+
+
+    <!-- Custom Theme Style -->
+    <link href="~/build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+    <div class="container body" ng-app="metApp">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title"><span>Deloitte</span><i class="fa fa-circle"></i> <span> MET</span></a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <br />
+                
+                    
+                    <!-- sidebar menu -->
+                 @RenderPage("~/Views/Shared/_SideBar.cshtml")
+                    <!-- /sidebar menu -->
+                    <!-- /menu footer buttons -->
+                 @RenderPage("~/Views/Shared/_SideBarFooter.cshtml")
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+           @RenderPage("~/Views/Shared/_Header.cshtml")
+            <!-- /top navigation -->
+            <!-- page content -->
+
+
+
+            <div class="modal fade bs-addrelease-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Estimate an New Release</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <form class="form-horizontal form-label-left">
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Select</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <select class="form-control">
+                                            <option selected="selected" value="-1"> -- Select Project -- </option>
+                                            <option value="9be64664-d338-4209-b0a8-d74da5632052">ChildWelfare</option>
+                                            <option value="68d21b4b-e0d4-420d-9628-293e22d1a2a7">CAPS</option>
+                                            <option value="64106dfb-401b-4b23-b757-949d0746c0bd">iCIS</option>
+                                            <option value="4bc7fbe1-274a-40b6-a2c0-d894613b856b">Internal_Apps</option>
+                                            <option value="304a19c5-983d-47fa-ac99-757f791b9e81">EKMS_IMSS</option>
+                                            <option value="23ef4526-a7c8-4dcf-9c6e-6c0ea6a64b2c">ITSS_Services</option>
+                                            <option value="d452f313-9e65-44e3-aa46-47b6f00038fd">PELICAN</option>
+                                            <option value="49f5a2ac-d0ea-4534-812e-8ce2ab294177">ATS_Archive</option>
+                                            <option value="c64d9712-7285-4378-8853-aa4f1cf9229a">HCSIS</option>
+                                            <option value="3c9d18f1-cf21-423d-b8fa-ec142e887667">Agile_Projects</option>
+                                            <option value="4057f895-919d-484a-bbdf-f1d800b5a1dd">All_Applications</option>
+                                            <option value="dce8374e-da15-4b04-a150-29f763480de2">PACSES</option>
+                                            <option value="d5fafd77-b0d2-4316-a520-552d6bba51a3">CWIS</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Select a Release/Iteration Path</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <select class="form-control">
+                                            <option value="9be64664-d338-4209-b0a8-d74da5632052">Release 1.0</option>
+                                            <option value="68d21b4b-e0d4-420d-9628-293e22d1a2a7">Release 2.0</option>
+                                            <option value="64106dfb-401b-4b23-b757-949d0746c0bd">Release 3.0</option>
+                                            <option value="4bc7fbe1-274a-40b6-a2c0-d894613b856b">Release 4.0</option>
+                                            <option value="304a19c5-983d-47fa-ac99-757f791b9e81">Release 5.0</option>
+                                            <option value="23ef4526-a7c8-4dcf-9c6e-6c0ea6a64b2c">Release 6.0</option>
+                                            <option value="d452f313-9e65-44e3-aa46-47b6f00038fd">Release 7.0</option>
+                                            <option value="49f5a2ac-d0ea-4534-812e-8ce2ab294177">Release 8.0</option>
+                                            <option value="c64d9712-7285-4378-8853-aa4f1cf9229a">Release 9.0</option>
+                                            <option value="3c9d18f1-cf21-423d-b8fa-ec142e887667">Release 10.0</option>
+                                            <option value="4057f895-919d-484a-bbdf-f1d800b5a1dd">Release 11.0</option>
+                                            <option value="dce8374e-da15-4b04-a150-29f763480de2">Release 12.0</option>
+                                            <option value="d5fafd77-b0d2-4316-a520-552d6bba51a3">Release 13.0</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-primary">Cancel</button>
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                    </div>
+                                </div>
+
+                            </form>
+
+
+
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade bs-addrelease2-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Estimate an New Work Item/Task</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <form class="form-horizontal form-label-left">
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                        Task  #<span class="required"></span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="task_num" placeholder="Task #" required="required" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                        <button type="submit" class="btn btn-primary">Cancel</button>
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                    </div>
+                                </div>
+
+                            </form>
+
+
+
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+           
+            <!-- /page content -->
+            @RenderBody()
+            <!-- footer content -->
+           @RenderPage("~/Views/Shared/_Footer.cshtml")
+            <!-- /footer content -->
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="~/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="~/vendors/nprogress/nprogress.js"></script>
+
+    <!-- Datatables -->
+    <script src="~/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="~/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="~/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="~/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="~/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="~/vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
+    <script src="~/vendors/jszip/dist/jszip.min.js"></script>
+    <script src="~/vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="~/vendors/pdfmake/build/vfs_fonts.js"></script>
+
+    <!-- Select2 -->
+    <script src="~/vendors/select2/dist/js/select2.full.min.js"></script>
+
+    <script src="~/vendors/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+
+    <!-- Chart.js -->
+    <script src="~/vendors/Chart.js/dist/Chart.min.js"></script>
+
+
+    <!-- Custom Theme Scripts -->
+    <script src="~/build/js/custom.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="~/Scripts/Angular/Root.js"></script>
+   <script src="~/Scripts/InfiniteScroll/ng-infinite-scroll.min.js"></script>
+    @RenderSection("scripts")
+ 
+
+
+    <script>
+      var ctx = document.getElementById("pieChart");
+      var data = {
+        datasets: [{
+          data: [23, 2, 2],
+          backgroundColor: [
+                "#E74C3C",
+                "#3498DB",
+				"#1ABB9C"
+
+          ],
+          label: 'My dataset' // for legend
+        }],
+        labels: [
+          "Not Started",
+          "In Progress",
+          "Completed"
+        ]
+      };
+
+      var pieChart = new Chart(ctx, {
+        data: data,
+        type: 'pie',
+        otpions: {
+          legend: false
+        }
+      });
+
+    </script>
+
+
+    <!-- Datatables -->
+    <script>
+        $(document).ready(function () {
+           
+      });
+    </script>
+    <!-- /Datatables -->
+    <!-- Select2 -->
+    <script>
+      $(document).ready(function() {
+        $(".select2_single").select2({});
+      });
+    </script>
+    <!-- /Select2 -->
+
+
+
+</body>
+</html>
+
+

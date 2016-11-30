@@ -1,0 +1,2223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="METModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="T_ASSIGNMENTS">
+          <Key>
+            <PropertyRef Name="ASSIGNMENT_SEQ" />
+          </Key>
+          <Property Name="ASSIGNMENT_SEQ" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WORK_ITEM_SEQ" Type="bigint" Nullable="false" />
+          <Property Name="USER_SEQ" Type="bigint" Nullable="false" />
+          <Property Name="STATUS_CDE" Type="bigint" Nullable="false" />
+          <Property Name="COMMENTS" Type="nvarchar(max)" />
+          <Property Name="UPDTD_DTE" Type="datetime" Nullable="false" />
+          <Property Name="UPDTD_BY" Type="varchar" MaxLength="50" />
+          <Property Name="DUE_DTE" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MET.dbo.T_ASSIGNMENTS_HIST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="T_ASSIGNMENTS_HIST">
+          <Key>
+            <PropertyRef Name="ASSIGNMENT_HIST_SEQ" />
+            <PropertyRef Name="ASSIGNMENT_SEQ" />
+          </Key>
+          <Property Name="ASSIGNMENT_HIST_SEQ" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ASSIGNMENT_SEQ" Type="bigint" Nullable="false" />
+          <Property Name="WORK_ITEM_SEQ" Type="bigint" />
+          <Property Name="USER_SEQ" Type="bigint" />
+          <Property Name="STATUS_CDE" Type="bigint" />
+          <Property Name="COMMENTS" Type="nvarchar(max)" />
+          <Property Name="UPDTD_DTE" Type="datetime" />
+          <Property Name="UPDTD_BY" Type="varchar" MaxLength="50" />
+          <Property Name="HIST_UPDTD_DTE" Type="datetime" />
+          <Property Name="HIST_UPDTD_BY" Type="varchar" MaxLength="50" />
+          <Property Name="DUE_DATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="T_COMPONENT">
+          <Key>
+            <PropertyRef Name="COMPONENT_SEQ" />
+          </Key>
+          <Property Name="COMPONENT_SEQ" Type="bigint" Nullable="false" />
+          <Property Name="WORK_ITEM_SEQ" Type="bigint" />
+          <Property Name="NAME" Type="varchar(max)" />
+          <Property Name="TYPE" Type="bigint" />
+          <Property Name="COMPLEXITY" Type="bigint" />
+          <Property Name="MULTILINGUAL" Type="char" MaxLength="10" />
+          <Property Name="RELEASE_SEQ" Type="bigint" />
+        </EntityType>
+        <EntityType Name="T_CONFIG">
+          <Key>
+            <PropertyRef Name="CONFIG_SEQ" />
+          </Key>
+          <Property Name="CONFIG_SEQ" Type="bigint" Nullable="false" />
+          <Property Name="SYSTEM_SEQ" Type="bigint" />
+          <Property Name="CONFIG_NAME" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="T_CONFIG_DETAIL">
+          <Key>
+            <PropertyRef Name="CONFIG_DETAIL_SEQ" />
+          </Key>
+          <Property Name="CONFIG_DETAIL_SEQ" Type="bigint" Nullable="false" />
+          <Property Name="CONFIG_SEQ" Type="bigint" />
+          <Property Name="COMPLEXITY" Type="bigint" />
+          <Property Name="TYPE" Type="bigint" />
+          <Property Name="WEIGHT" Type="float" />
+        </EntityType>
+        <EntityType Name="T_REFERENCE">
+          <Key>
+            <PropertyRef Name="REFERENCE_SEQ" />
+          </Key>
+          <Property Name="REFERENCE_SEQ" Type="bigint" Nullable="false" />
+          <Property Name="GROUP_CODE" Type="varchar" MaxLength="50" />
+          <Property Name="ENTITY_TEXT" Type="varchar(max)" />
+          <Property Name="ORDER_CDE" Type="bigint" />
+        </EntityType>
+        <EntityType Name="T_RELEASE">
+          <Key>
+            <PropertyRef Name="RELEASE_SEQ" />
+          </Key>
+          <Property Name="RELEASE_SEQ" Type="bigint" Nullable="false" />
+          <Property Name="RELEASE_NBR" Type="varchar" MaxLength="50" />
+          <Property Name="SYSTEM_SEQ" Type="bigint" />
+          <Property Name="UAT_KICK_OFF" Type="int" />
+          <Property Name="NBR_PLAYBOOK" Type="int" />
+          <Property Name="NBR_ENVIRONMENT" Type="int" />
+          <Property Name="NBR_BUILDS" Type="int" />
+          <Property Name="NBR_DEPLOYMENTS" Type="int" />
+          <Property Name="NBR_PLAYBOOK_MEETING" Type="int" />
+          <Property Name="NBR_DB_REFRESH" Type="int" />
+          <Property Name="NBR_SECURITY_SUPPORT_HOUR" Type="int" />
+          <Property Name="NBR_LOAD_TEST" Type="int" />
+          <Property Name="NBR_BATCH_VOLUME_TEST" Type="int" />
+          <Property Name="NBR_SECURITY_TEST" Type="int" />
+          <Property Name="NBR_DESIGN_SESSION" Type="int" />
+          <Property Name="NBR_ARCHITECTURE_REVIEW" Type="int" />
+          <Property Name="TFS_RELEASE_ID" Type="int" />
+          <Property Name="UPDTD_BY" Type="varchar" MaxLength="50" />
+          <Property Name="UPDTD_DTE" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MET.dbo.T_RELEASE_USER_ACCESS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="T_RELEASE_USER_ACCESS">
+          <Key>
+            <PropertyRef Name="USER_SEQ" />
+            <PropertyRef Name="RELEASE_SEQ" />
+            <PropertyRef Name="UPDTD_BY" />
+            <PropertyRef Name="UPDTD_DTE" />
+          </Key>
+          <Property Name="USER_SEQ" Type="bigint" Nullable="false" />
+          <Property Name="RELEASE_SEQ" Type="bigint" Nullable="false" />
+          <Property Name="UPDTD_BY" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPDTD_DTE" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_SPRINT">
+          <Key>
+            <PropertyRef Name="SPRINT_SEQ" />
+          </Key>
+          <Property Name="SPRINT_SEQ" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NBR_STORY_POINTS" Type="smallint" Nullable="false" />
+          <Property Name="SPRINT_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="RELEASE_SEQ" Type="bigint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MET.dbo.T_SPRINT_USER_ACCESS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="T_SPRINT_USER_ACCESS">
+          <Key>
+            <PropertyRef Name="USER_SEQ" />
+            <PropertyRef Name="SPRINT_SEQ" />
+            <PropertyRef Name="UPDTD_BY" />
+            <PropertyRef Name="UPDTD_DTE" />
+          </Key>
+          <Property Name="USER_SEQ" Type="bigint" Nullable="false" />
+          <Property Name="SPRINT_SEQ" Type="bigint" Nullable="false" />
+          <Property Name="UPDTD_BY" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPDTD_DTE" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_SYSTEM">
+          <Key>
+            <PropertyRef Name="SYSTEM_SEQ" />
+          </Key>
+          <Property Name="SYSTEM_SEQ" Type="bigint" Nullable="false" />
+          <Property Name="SYSTEM_NAME" Type="varchar(max)" Nullable="false" />
+          <Property Name="TFS_GUID" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="T_USERS">
+          <Key>
+            <PropertyRef Name="USER_SEQ" />
+          </Key>
+          <Property Name="USER_SEQ" Type="bigint" Nullable="false" />
+          <Property Name="USER_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="SYSTEM_SEQ" Type="bigint" />
+          <Property Name="USER_ROLE" Type="bigint" />
+        </EntityType>
+        <EntityType Name="T_WORK_COMPONENT">
+          <Key>
+            <PropertyRef Name="WORK_COMPONENT_SEQ" />
+          </Key>
+          <Property Name="TFS_WORK_ITEM_SEQ" Type="varchar" MaxLength="50" />
+          <Property Name="WORK_ITEM_SEQ" Type="varchar" MaxLength="50" />
+          <Property Name="COMPONENT_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="COMPONENT_SEQ" Type="varchar" MaxLength="50" />
+          <Property Name="COMPONENT_COUNT" Type="bigint" Nullable="false" />
+          <Property Name="WORK_COMPONENT_SEQ" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UPDTD_BY" Type="nvarchar" MaxLength="50" />
+          <Property Name="UPDTD_DTE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="T_WORK_ITEM">
+          <Key>
+            <PropertyRef Name="WORK_ITEM_SEQ" />
+          </Key>
+          <Property Name="WORK_ITEM_SEQ" Type="bigint" Nullable="false" />
+          <Property Name="RELEASE_SEQ" Type="bigint" />
+          <Property Name="TYPE" Type="varchar" MaxLength="50" />
+          <Property Name="TITLE" Type="varchar(max)" />
+          <Property Name="TOTAL_HOURS" Type="float" />
+          <Property Name="TOTAL_DEV_HOURS" Type="float" />
+          <Property Name="TOTAL_DES_HOURS" Type="float" />
+          <Property Name="TFS_WI_ID" Type="int" />
+          <Property Name="TFS_WI_SEVERITY" Type="varchar" MaxLength="50" />
+          <Property Name="SYSTEM_SEQ" Type="bigint" />
+          <Property Name="SPRINT_SEQ" Type="bigint" />
+          <Property Name="UPDTD_DTE" Type="datetime" />
+          <Property Name="UPDTD_BY" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_T_ASSIGNMENT_T_USER">
+          <End Role="T_USERS" Type="Self.T_USERS" Multiplicity="1" />
+          <End Role="T_ASSIGNMENTS" Type="Self.T_ASSIGNMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_USERS">
+              <PropertyRef Name="USER_SEQ" />
+            </Principal>
+            <Dependent Role="T_ASSIGNMENTS">
+              <PropertyRef Name="USER_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_ASSIGNMENT_T_WORK_ITEM">
+          <End Role="T_WORK_ITEM" Type="Self.T_WORK_ITEM" Multiplicity="1" />
+          <End Role="T_ASSIGNMENTS" Type="Self.T_ASSIGNMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_WORK_ITEM">
+              <PropertyRef Name="WORK_ITEM_SEQ" />
+            </Principal>
+            <Dependent Role="T_ASSIGNMENTS">
+              <PropertyRef Name="WORK_ITEM_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_COMPONENT_T_WORK_ITEM">
+          <End Role="T_WORK_ITEM" Type="Self.T_WORK_ITEM" Multiplicity="0..1" />
+          <End Role="T_COMPONENT" Type="Self.T_COMPONENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_WORK_ITEM">
+              <PropertyRef Name="WORK_ITEM_SEQ" />
+            </Principal>
+            <Dependent Role="T_COMPONENT">
+              <PropertyRef Name="WORK_ITEM_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_CONFIG_DETAIL_T_CONFIG">
+          <End Role="T_CONFIG" Type="Self.T_CONFIG" Multiplicity="0..1" />
+          <End Role="T_CONFIG_DETAIL" Type="Self.T_CONFIG_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_CONFIG">
+              <PropertyRef Name="CONFIG_SEQ" />
+            </Principal>
+            <Dependent Role="T_CONFIG_DETAIL">
+              <PropertyRef Name="CONFIG_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_CONFIG_T_SYSTEM">
+          <End Role="T_SYSTEM" Type="Self.T_SYSTEM" Multiplicity="0..1" />
+          <End Role="T_CONFIG" Type="Self.T_CONFIG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SYSTEM">
+              <PropertyRef Name="SYSTEM_SEQ" />
+            </Principal>
+            <Dependent Role="T_CONFIG">
+              <PropertyRef Name="SYSTEM_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_RELEASE_T_SYSTEM">
+          <End Role="T_SYSTEM" Type="Self.T_SYSTEM" Multiplicity="0..1" />
+          <End Role="T_RELEASE" Type="Self.T_RELEASE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SYSTEM">
+              <PropertyRef Name="SYSTEM_SEQ" />
+            </Principal>
+            <Dependent Role="T_RELEASE">
+              <PropertyRef Name="SYSTEM_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_RELEASE_USER_ACCESS_T_RELEASE">
+          <End Role="T_RELEASE" Type="Self.T_RELEASE" Multiplicity="1" />
+          <End Role="T_RELEASE_USER_ACCESS" Type="Self.T_RELEASE_USER_ACCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_RELEASE">
+              <PropertyRef Name="RELEASE_SEQ" />
+            </Principal>
+            <Dependent Role="T_RELEASE_USER_ACCESS">
+              <PropertyRef Name="RELEASE_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_RELEASE_USER_ACCESS_T_USERS">
+          <End Role="T_USERS" Type="Self.T_USERS" Multiplicity="1" />
+          <End Role="T_RELEASE_USER_ACCESS" Type="Self.T_RELEASE_USER_ACCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_USERS">
+              <PropertyRef Name="USER_SEQ" />
+            </Principal>
+            <Dependent Role="T_RELEASE_USER_ACCESS">
+              <PropertyRef Name="USER_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_SPRINT_T_RELEASE">
+          <End Role="T_RELEASE" Type="Self.T_RELEASE" Multiplicity="0..1" />
+          <End Role="T_SPRINT" Type="Self.T_SPRINT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_RELEASE">
+              <PropertyRef Name="RELEASE_SEQ" />
+            </Principal>
+            <Dependent Role="T_SPRINT">
+              <PropertyRef Name="RELEASE_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_SPRINT_USER_ACCESS_T_SPRINT">
+          <End Role="T_SPRINT" Type="Self.T_SPRINT" Multiplicity="1" />
+          <End Role="T_SPRINT_USER_ACCESS" Type="Self.T_SPRINT_USER_ACCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SPRINT">
+              <PropertyRef Name="SPRINT_SEQ" />
+            </Principal>
+            <Dependent Role="T_SPRINT_USER_ACCESS">
+              <PropertyRef Name="SPRINT_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_SPRINT_USER_ACCESS_T_USERS">
+          <End Role="T_USERS" Type="Self.T_USERS" Multiplicity="1" />
+          <End Role="T_SPRINT_USER_ACCESS" Type="Self.T_SPRINT_USER_ACCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_USERS">
+              <PropertyRef Name="USER_SEQ" />
+            </Principal>
+            <Dependent Role="T_SPRINT_USER_ACCESS">
+              <PropertyRef Name="USER_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_WORK_ITEM_T_RELEASE">
+          <End Role="T_RELEASE" Type="Self.T_RELEASE" Multiplicity="0..1" />
+          <End Role="T_WORK_ITEM" Type="Self.T_WORK_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_RELEASE">
+              <PropertyRef Name="RELEASE_SEQ" />
+            </Principal>
+            <Dependent Role="T_WORK_ITEM">
+              <PropertyRef Name="RELEASE_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_WORK_ITEM_T_SPRINT">
+          <End Role="T_SPRINT" Type="Self.T_SPRINT" Multiplicity="0..1" />
+          <End Role="T_WORK_ITEM" Type="Self.T_WORK_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SPRINT">
+              <PropertyRef Name="SPRINT_SEQ" />
+            </Principal>
+            <Dependent Role="T_WORK_ITEM">
+              <PropertyRef Name="SPRINT_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_WORK_ITEM_T_SYSTEM">
+          <End Role="T_SYSTEM" Type="Self.T_SYSTEM" Multiplicity="0..1" />
+          <End Role="T_WORK_ITEM" Type="Self.T_WORK_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SYSTEM">
+              <PropertyRef Name="SYSTEM_SEQ" />
+            </Principal>
+            <Dependent Role="T_WORK_ITEM">
+              <PropertyRef Name="SYSTEM_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="USP_RELEASE_GET_USER_LIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_accessadmin">
+          <Parameter Name="p_ReleaseSeqId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_ASSIGNMENT_GET_ALL_STATUSES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_ASSIGNMENT_GET_CURRENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_workItemID" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="USP_ASSIGNMENT_GET_HISTORY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_workItemID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_ASSIGNMENT_SAVE_DETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_ItemID" Type="bigint" Mode="In" />
+          <Parameter Name="p_userID" Type="bigint" Mode="In" />
+          <Parameter Name="p_status" Type="bigint" Mode="In" />
+          <Parameter Name="p_comments" Type="varchar(max)" Mode="In" />
+          <Parameter Name="p_updtd_by" Type="varchar" Mode="In" />
+          <Parameter Name="p_duedate" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_CLEAR_COMPONENT_CONFIG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="systemID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_COMPONENT_CONFIG_SAVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="systemID" Type="int" Mode="In" />
+          <Parameter Name="p_complexity" Type="int" Mode="In" />
+          <Parameter Name="p_type" Type="int" Mode="In" />
+          <Parameter Name="p_weight" Type="float" Mode="In" />
+        </Function>
+        <Function Name="USP_DELETE_ITEM_COMPONENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="USP_GET_COMP_COMPLX_REF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_GET_COMP_TYPE_REF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_GET_COMPONENTS_FOR_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="compType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_GET_CONFIG_VALUES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_SystemID" Type="int" Mode="In" />
+          <Parameter Name="p_GroupCde" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_GET_ITEM_COMPONENTS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_GET_WORK_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_INSERT_ITEM_COMPONENTS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="work_item_id" Type="bigint" Mode="In" />
+          <Parameter Name="name" Type="varchar(max)" Mode="In" />
+          <Parameter Name="complexity" Type="bigint" Mode="In" />
+          <Parameter Name="type" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="USP_INSERT_WORK_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tfs_id" Type="int" Mode="In" />
+          <Parameter Name="title" Type="varchar(max)" Mode="In" />
+          <Parameter Name="type" Type="varchar" Mode="In" />
+          <Parameter Name="severity" Type="varchar" Mode="In" />
+          <Parameter Name="systemSeq" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_LANDING_GET_NON_TFS_RELEASE_LIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_systemTfsGuid" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_LANDING_GET_RELEASE_LIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_SystemID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_LANDING_GET_SYSTEM_LIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_LANDING_SEARCH_RELEASE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_SysSeq" Type="int" Mode="In" />
+          <Parameter Name="p_ReleaseName" Type="varchar(max)" Mode="In" />
+          <Parameter Name="p_ReleaseTfsId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_LANDING_SEARCH_SYSTEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_SysName" Type="varchar(max)" Mode="In" />
+          <Parameter Name="p_TfsGuid" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_RELEASE_DELETE_WORK_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_WorkItemID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_RELEASE_GENERATE_REPORT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_ReleaseId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_RELEASE_GET_ATTRIBUTE_LIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_ReleaseSeqID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_RELEASE_GET_RELEASE_META" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_ReleaseSeqID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_RELEASE_GET_WORK_ITEM_COMPONENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_WorkItemID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_RELEASE_GET_WORK_ITEM_LIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_ReleaseSeqID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_RELEASE_SAVE_NON_TFS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_SystemSeqId" Type="int" Mode="In" />
+          <Parameter Name="p_ReleaseTitle" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_RELEASE_SAVE_RELEASE_META" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_RELEASE_SEQ" Type="int" Mode="In" />
+          <Parameter Name="p_UAT_KICK_OFF" Type="int" Mode="In" />
+          <Parameter Name="p_NBR_PLAYBOOK" Type="int" Mode="In" />
+          <Parameter Name="p_NBR_ENVIRONMENT" Type="int" Mode="In" />
+          <Parameter Name="p_NBR_BUILDS" Type="int" Mode="In" />
+          <Parameter Name="p_NBR_DEPLOYMENTS" Type="int" Mode="In" />
+          <Parameter Name="p_NBR_PLAYBOOK_MEETING" Type="int" Mode="In" />
+          <Parameter Name="p_NBR_DB_REFRESH" Type="int" Mode="In" />
+          <Parameter Name="p_NBR_SECURITY_SUPPORT_HOUR" Type="int" Mode="In" />
+          <Parameter Name="p_NBR_LOAD_TEST" Type="int" Mode="In" />
+          <Parameter Name="p_NBR_BATCH_VOLUME_TEST" Type="int" Mode="In" />
+          <Parameter Name="p_NBR_SECURITY_TEST" Type="int" Mode="In" />
+          <Parameter Name="p_NBR_DESIGN_SESSION" Type="int" Mode="In" />
+          <Parameter Name="p_NBR_ARCHITECTURE_REVIEW" Type="int" Mode="In" />
+          <Parameter Name="p_TFS_RELEASE_ID" Type="int" Mode="In" />
+          <Parameter Name="p_RELEASE_TITLE" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_SAVE_ITEM_HOURS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="bigint" Mode="In" />
+          <Parameter Name="dev_hours" Type="float" Mode="In" />
+          <Parameter Name="des_hours" Type="float" Mode="In" />
+          <Parameter Name="total_hours" Type="float" Mode="In" />
+        </Function>
+        <Function Name="USP_SAVE_WORK_ITEM_RELEASE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_WorkItemID" Type="int" Mode="In" />
+          <Parameter Name="p_ReleaseID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_SYSTEM_GET_RECORD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="system_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_TABLEHELP_GET_REF_GROUP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_groupCde" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_TABLEHELP_GET_REF_VALUES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_TABLEHELP_GET_REFSEQ" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_entityText" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="USP_TABLEHELP_GET_REFVALUE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_refSeq" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="USP_TABLEHELP_GET_SYSTEMNAME" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_systemSeq" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="USP_TABLEHELP_GET_TFSID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_workItemSeq" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="USP_TABLEHELP_GET_TFSID_SYSTEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_systemSeq" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="USP_TABLEHELP_GET_USERNAME" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_userSeq" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="USP_UPDATE_ITEM_COMPONENTS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="component_seq" Type="bigint" Mode="In" />
+          <Parameter Name="name" Type="varchar(max)" Mode="In" />
+          <Parameter Name="type" Type="bigint" Mode="In" />
+          <Parameter Name="complexity" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="USP_USER_DELETE_DATA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_userName" Type="varchar" Mode="In" />
+          <Parameter Name="p_sysID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_USER_GET_DATA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_userName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_USER_GET_PROJECT_LIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_systemID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_USER_GET_SEARCH_ITEMS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_userSeq" Type="bigint" Mode="In" />
+          <Parameter Name="p_sysSeq" Type="bigint" Mode="In" />
+          <Parameter Name="p_releaseSeq" Type="bigint" Mode="In" />
+          <Parameter Name="p_statusSeq" Type="bigint" Mode="In" />
+          <Parameter Name="p_itemType" Type="varchar" Mode="In" />
+          <Parameter Name="p_startDte" Type="date" Mode="In" />
+          <Parameter Name="p_endDte" Type="date" Mode="In" />
+        </Function>
+        <Function Name="USP_USER_GET_USER_ITEMS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_userSeq" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="USP_USER_GET_USER_LIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_systemID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_USER_SAVE_DATA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_userName" Type="varchar" Mode="In" />
+          <Parameter Name="p_userRole" Type="int" Mode="In" />
+          <Parameter Name="p_userSystemID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_USER_SAVE_USER_ASSIGNMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_ItemID" Type="bigint" Mode="In" />
+          <Parameter Name="p_userID" Type="bigint" Mode="In" />
+          <Parameter Name="p_dueDate" Type="date" Mode="In" />
+          <Parameter Name="p_updtd_by" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_USER_UPDATE_DATA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_userName" Type="varchar" Mode="In" />
+          <Parameter Name="p_systemId" Type="bigint" Mode="In" />
+          <Parameter Name="p_role" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="USP_WORK_ITEM_UPDATE_ASSIGNMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="workItemId" Type="bigint" Mode="In" />
+        </Function>
+        <EntityContainer Name="METModelStoreContainer">
+          <EntitySet Name="T_ASSIGNMENTS" EntityType="Self.T_ASSIGNMENTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_COMPONENT" EntityType="Self.T_COMPONENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_CONFIG" EntityType="Self.T_CONFIG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_CONFIG_DETAIL" EntityType="Self.T_CONFIG_DETAIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_REFERENCE" EntityType="Self.T_REFERENCE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_RELEASE" EntityType="Self.T_RELEASE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_SPRINT" EntityType="Self.T_SPRINT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_SYSTEM" EntityType="Self.T_SYSTEM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_USERS" EntityType="Self.T_USERS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_WORK_COMPONENT" EntityType="Self.T_WORK_COMPONENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_WORK_ITEM" EntityType="Self.T_WORK_ITEM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_ASSIGNMENTS_HIST" EntityType="Self.T_ASSIGNMENTS_HIST" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [T_ASSIGNMENTS_HIST].[ASSIGNMENT_HIST_SEQ] AS [ASSIGNMENT_HIST_SEQ], 
+    [T_ASSIGNMENTS_HIST].[ASSIGNMENT_SEQ] AS [ASSIGNMENT_SEQ], 
+    [T_ASSIGNMENTS_HIST].[WORK_ITEM_SEQ] AS [WORK_ITEM_SEQ], 
+    [T_ASSIGNMENTS_HIST].[USER_SEQ] AS [USER_SEQ], 
+    [T_ASSIGNMENTS_HIST].[STATUS_CDE] AS [STATUS_CDE], 
+    [T_ASSIGNMENTS_HIST].[COMMENTS] AS [COMMENTS], 
+    [T_ASSIGNMENTS_HIST].[UPDTD_DTE] AS [UPDTD_DTE], 
+    [T_ASSIGNMENTS_HIST].[UPDTD_BY] AS [UPDTD_BY], 
+    [T_ASSIGNMENTS_HIST].[HIST_UPDTD_DTE] AS [HIST_UPDTD_DTE], 
+    [T_ASSIGNMENTS_HIST].[HIST_UPDTD_BY] AS [HIST_UPDTD_BY], 
+    [T_ASSIGNMENTS_HIST].[DUE_DATE] AS [DUE_DATE]
+    FROM [dbo].[T_ASSIGNMENTS_HIST] AS [T_ASSIGNMENTS_HIST]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="T_RELEASE_USER_ACCESS" EntityType="Self.T_RELEASE_USER_ACCESS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [T_RELEASE_USER_ACCESS].[USER_SEQ] AS [USER_SEQ], 
+    [T_RELEASE_USER_ACCESS].[RELEASE_SEQ] AS [RELEASE_SEQ], 
+    [T_RELEASE_USER_ACCESS].[UPDTD_BY] AS [UPDTD_BY], 
+    [T_RELEASE_USER_ACCESS].[UPDTD_DTE] AS [UPDTD_DTE]
+    FROM [dbo].[T_RELEASE_USER_ACCESS] AS [T_RELEASE_USER_ACCESS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="T_SPRINT_USER_ACCESS" EntityType="Self.T_SPRINT_USER_ACCESS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [T_SPRINT_USER_ACCESS].[USER_SEQ] AS [USER_SEQ], 
+    [T_SPRINT_USER_ACCESS].[SPRINT_SEQ] AS [SPRINT_SEQ], 
+    [T_SPRINT_USER_ACCESS].[UPDTD_BY] AS [UPDTD_BY], 
+    [T_SPRINT_USER_ACCESS].[UPDTD_DTE] AS [UPDTD_DTE]
+    FROM [dbo].[T_SPRINT_USER_ACCESS] AS [T_SPRINT_USER_ACCESS]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_T_ASSIGNMENT_T_USER" Association="Self.FK_T_ASSIGNMENT_T_USER">
+            <End Role="T_USERS" EntitySet="T_USERS" />
+            <End Role="T_ASSIGNMENTS" EntitySet="T_ASSIGNMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_ASSIGNMENT_T_WORK_ITEM" Association="Self.FK_T_ASSIGNMENT_T_WORK_ITEM">
+            <End Role="T_WORK_ITEM" EntitySet="T_WORK_ITEM" />
+            <End Role="T_ASSIGNMENTS" EntitySet="T_ASSIGNMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_COMPONENT_T_WORK_ITEM" Association="Self.FK_T_COMPONENT_T_WORK_ITEM">
+            <End Role="T_WORK_ITEM" EntitySet="T_WORK_ITEM" />
+            <End Role="T_COMPONENT" EntitySet="T_COMPONENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_CONFIG_DETAIL_T_CONFIG" Association="Self.FK_T_CONFIG_DETAIL_T_CONFIG">
+            <End Role="T_CONFIG" EntitySet="T_CONFIG" />
+            <End Role="T_CONFIG_DETAIL" EntitySet="T_CONFIG_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_CONFIG_T_SYSTEM" Association="Self.FK_T_CONFIG_T_SYSTEM">
+            <End Role="T_SYSTEM" EntitySet="T_SYSTEM" />
+            <End Role="T_CONFIG" EntitySet="T_CONFIG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_RELEASE_T_SYSTEM" Association="Self.FK_T_RELEASE_T_SYSTEM">
+            <End Role="T_SYSTEM" EntitySet="T_SYSTEM" />
+            <End Role="T_RELEASE" EntitySet="T_RELEASE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_RELEASE_USER_ACCESS_T_RELEASE" Association="Self.FK_T_RELEASE_USER_ACCESS_T_RELEASE">
+            <End Role="T_RELEASE" EntitySet="T_RELEASE" />
+            <End Role="T_RELEASE_USER_ACCESS" EntitySet="T_RELEASE_USER_ACCESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_RELEASE_USER_ACCESS_T_USERS" Association="Self.FK_T_RELEASE_USER_ACCESS_T_USERS">
+            <End Role="T_USERS" EntitySet="T_USERS" />
+            <End Role="T_RELEASE_USER_ACCESS" EntitySet="T_RELEASE_USER_ACCESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_SPRINT_T_RELEASE" Association="Self.FK_T_SPRINT_T_RELEASE">
+            <End Role="T_RELEASE" EntitySet="T_RELEASE" />
+            <End Role="T_SPRINT" EntitySet="T_SPRINT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_SPRINT_USER_ACCESS_T_SPRINT" Association="Self.FK_T_SPRINT_USER_ACCESS_T_SPRINT">
+            <End Role="T_SPRINT" EntitySet="T_SPRINT" />
+            <End Role="T_SPRINT_USER_ACCESS" EntitySet="T_SPRINT_USER_ACCESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_SPRINT_USER_ACCESS_T_USERS" Association="Self.FK_T_SPRINT_USER_ACCESS_T_USERS">
+            <End Role="T_USERS" EntitySet="T_USERS" />
+            <End Role="T_SPRINT_USER_ACCESS" EntitySet="T_SPRINT_USER_ACCESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_WORK_ITEM_T_RELEASE" Association="Self.FK_T_WORK_ITEM_T_RELEASE">
+            <End Role="T_RELEASE" EntitySet="T_RELEASE" />
+            <End Role="T_WORK_ITEM" EntitySet="T_WORK_ITEM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_WORK_ITEM_T_SPRINT" Association="Self.FK_T_WORK_ITEM_T_SPRINT">
+            <End Role="T_SPRINT" EntitySet="T_SPRINT" />
+            <End Role="T_WORK_ITEM" EntitySet="T_WORK_ITEM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_WORK_ITEM_T_SYSTEM" Association="Self.FK_T_WORK_ITEM_T_SYSTEM">
+            <End Role="T_SYSTEM" EntitySet="T_SYSTEM" />
+            <End Role="T_WORK_ITEM" EntitySet="T_WORK_ITEM" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="METModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="T_ASSIGNMENTS">
+          <Key>
+            <PropertyRef Name="ASSIGNMENT_SEQ" />
+          </Key>
+          <Property Name="ASSIGNMENT_SEQ" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WORK_ITEM_SEQ" Type="Int64" Nullable="false" />
+          <Property Name="USER_SEQ" Type="Int64" Nullable="false" />
+          <Property Name="STATUS_CDE" Type="Int64" Nullable="false" />
+          <Property Name="COMMENTS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UPDTD_DTE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDTD_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DUE_DTE" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="T_USERS" Relationship="Self.FK_T_ASSIGNMENT_T_USER" FromRole="T_ASSIGNMENTS" ToRole="T_USERS" />
+          <NavigationProperty Name="T_WORK_ITEM" Relationship="Self.FK_T_ASSIGNMENT_T_WORK_ITEM" FromRole="T_ASSIGNMENTS" ToRole="T_WORK_ITEM" />
+        </EntityType>
+        <EntityType Name="T_COMPONENT">
+          <Key>
+            <PropertyRef Name="COMPONENT_SEQ" />
+          </Key>
+          <Property Name="COMPONENT_SEQ" Type="Int64" Nullable="false" />
+          <Property Name="WORK_ITEM_SEQ" Type="Int64" />
+          <Property Name="NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TYPE" Type="Int64" />
+          <Property Name="COMPLEXITY" Type="Int64" />
+          <Property Name="MULTILINGUAL" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="RELEASE_SEQ" Type="Int64" />
+          <NavigationProperty Name="T_WORK_ITEM" Relationship="Self.FK_T_COMPONENT_T_WORK_ITEM" FromRole="T_COMPONENT" ToRole="T_WORK_ITEM" />
+        </EntityType>
+        <EntityType Name="T_CONFIG">
+          <Key>
+            <PropertyRef Name="CONFIG_SEQ" />
+          </Key>
+          <Property Name="CONFIG_SEQ" Type="Int64" Nullable="false" />
+          <Property Name="SYSTEM_SEQ" Type="Int64" />
+          <Property Name="CONFIG_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_CONFIG_DETAIL" Relationship="Self.FK_T_CONFIG_DETAIL_T_CONFIG" FromRole="T_CONFIG" ToRole="T_CONFIG_DETAIL" />
+          <NavigationProperty Name="T_SYSTEM" Relationship="Self.FK_T_CONFIG_T_SYSTEM" FromRole="T_CONFIG" ToRole="T_SYSTEM" />
+        </EntityType>
+        <EntityType Name="T_CONFIG_DETAIL">
+          <Key>
+            <PropertyRef Name="CONFIG_DETAIL_SEQ" />
+          </Key>
+          <Property Name="CONFIG_DETAIL_SEQ" Type="Int64" Nullable="false" />
+          <Property Name="CONFIG_SEQ" Type="Int64" />
+          <Property Name="COMPLEXITY" Type="Int64" />
+          <Property Name="TYPE" Type="Int64" />
+          <Property Name="WEIGHT" Type="Double" />
+          <NavigationProperty Name="T_CONFIG" Relationship="Self.FK_T_CONFIG_DETAIL_T_CONFIG" FromRole="T_CONFIG_DETAIL" ToRole="T_CONFIG" />
+        </EntityType>
+        <EntityType Name="T_REFERENCE">
+          <Key>
+            <PropertyRef Name="REFERENCE_SEQ" />
+          </Key>
+          <Property Name="REFERENCE_SEQ" Type="Int64" Nullable="false" />
+          <Property Name="GROUP_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ENTITY_TEXT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ORDER_CDE" Type="Int64" />
+        </EntityType>
+        <EntityType Name="T_RELEASE">
+          <Key>
+            <PropertyRef Name="RELEASE_SEQ" />
+          </Key>
+          <Property Name="RELEASE_SEQ" Type="Int64" Nullable="false" />
+          <Property Name="RELEASE_NBR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SYSTEM_SEQ" Type="Int64" />
+          <Property Name="UAT_KICK_OFF" Type="Int32" />
+          <Property Name="NBR_PLAYBOOK" Type="Int32" />
+          <Property Name="NBR_ENVIRONMENT" Type="Int32" />
+          <Property Name="NBR_BUILDS" Type="Int32" />
+          <Property Name="NBR_DEPLOYMENTS" Type="Int32" />
+          <Property Name="NBR_PLAYBOOK_MEETING" Type="Int32" />
+          <Property Name="NBR_DB_REFRESH" Type="Int32" />
+          <Property Name="NBR_SECURITY_SUPPORT_HOUR" Type="Int32" />
+          <Property Name="NBR_LOAD_TEST" Type="Int32" />
+          <Property Name="NBR_BATCH_VOLUME_TEST" Type="Int32" />
+          <Property Name="NBR_SECURITY_TEST" Type="Int32" />
+          <Property Name="NBR_DESIGN_SESSION" Type="Int32" />
+          <Property Name="NBR_ARCHITECTURE_REVIEW" Type="Int32" />
+          <Property Name="TFS_RELEASE_ID" Type="Int32" />
+          <Property Name="UPDTD_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UPDTD_DTE" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="T_SYSTEM" Relationship="Self.FK_T_RELEASE_T_SYSTEM" FromRole="T_RELEASE" ToRole="T_SYSTEM" />
+          <NavigationProperty Name="T_RELEASE_USER_ACCESS" Relationship="Self.FK_T_RELEASE_USER_ACCESS_T_RELEASE" FromRole="T_RELEASE" ToRole="T_RELEASE_USER_ACCESS" />
+          <NavigationProperty Name="T_SPRINT" Relationship="METModel.FK_T_SPRINT_T_RELEASE" FromRole="T_RELEASE" ToRole="T_SPRINT" />
+          <NavigationProperty Name="T_WORK_ITEM" Relationship="METModel.FK_T_WORK_ITEM_T_RELEASE" FromRole="T_RELEASE" ToRole="T_WORK_ITEM" />
+        </EntityType>
+        <EntityType Name="T_SPRINT">
+          <Key>
+            <PropertyRef Name="SPRINT_SEQ" />
+          </Key>
+          <Property Name="SPRINT_SEQ" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NBR_STORY_POINTS" Type="Int16" Nullable="false" />
+          <Property Name="SPRINT_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="T_SPRINT_USER_ACCESS" Relationship="Self.FK_T_SPRINT_USER_ACCESS_T_SPRINT" FromRole="T_SPRINT" ToRole="T_SPRINT_USER_ACCESS" />
+          <NavigationProperty Name="T_WORK_ITEM" Relationship="Self.FK_T_WORK_ITEM_T_SPRINT" FromRole="T_SPRINT" ToRole="T_WORK_ITEM" />
+          <Property Name="RELEASE_SEQ" Type="Int64" />
+          <NavigationProperty Name="T_RELEASE" Relationship="METModel.FK_T_SPRINT_T_RELEASE" FromRole="T_SPRINT" ToRole="T_RELEASE" />
+        </EntityType>
+        <EntityType Name="T_SYSTEM">
+          <Key>
+            <PropertyRef Name="SYSTEM_SEQ" />
+          </Key>
+          <Property Name="SYSTEM_SEQ" Type="Int64" Nullable="false" />
+          <Property Name="SYSTEM_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TFS_GUID" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_CONFIG" Relationship="Self.FK_T_CONFIG_T_SYSTEM" FromRole="T_SYSTEM" ToRole="T_CONFIG" />
+          <NavigationProperty Name="T_RELEASE" Relationship="Self.FK_T_RELEASE_T_SYSTEM" FromRole="T_SYSTEM" ToRole="T_RELEASE" />
+          <NavigationProperty Name="T_WORK_ITEM" Relationship="METModel.FK_T_WORK_ITEM_T_SYSTEM" FromRole="T_SYSTEM" ToRole="T_WORK_ITEM" />
+        </EntityType>
+        <EntityType Name="T_USERS">
+          <Key>
+            <PropertyRef Name="USER_SEQ" />
+          </Key>
+          <Property Name="USER_SEQ" Type="Int64" Nullable="false" />
+          <Property Name="USER_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SYSTEM_SEQ" Type="Int64" />
+          <Property Name="USER_ROLE" Type="Int64" />
+          <NavigationProperty Name="T_ASSIGNMENTS" Relationship="Self.FK_T_ASSIGNMENT_T_USER" FromRole="T_USERS" ToRole="T_ASSIGNMENTS" />
+          <NavigationProperty Name="T_RELEASE_USER_ACCESS" Relationship="Self.FK_T_RELEASE_USER_ACCESS_T_USERS" FromRole="T_USERS" ToRole="T_RELEASE_USER_ACCESS" />
+          <NavigationProperty Name="T_SPRINT_USER_ACCESS" Relationship="Self.FK_T_SPRINT_USER_ACCESS_T_USERS" FromRole="T_USERS" ToRole="T_SPRINT_USER_ACCESS" />
+        </EntityType>
+        <EntityType Name="T_WORK_COMPONENT">
+          <Key>
+            <PropertyRef Name="WORK_COMPONENT_SEQ" />
+          </Key>
+          <Property Name="TFS_WORK_ITEM_SEQ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WORK_ITEM_SEQ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="COMPONENT_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="COMPONENT_SEQ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="COMPONENT_COUNT" Type="Int64" Nullable="false" />
+          <Property Name="WORK_COMPONENT_SEQ" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UPDTD_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UPDTD_DTE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="T_WORK_ITEM">
+          <Key>
+            <PropertyRef Name="WORK_ITEM_SEQ" />
+          </Key>
+          <Property Name="WORK_ITEM_SEQ" Type="Int64" Nullable="false" />
+          <Property Name="RELEASE_SEQ" Type="Int64" />
+          <Property Name="TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TITLE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TOTAL_HOURS" Type="Double" />
+          <Property Name="TOTAL_DEV_HOURS" Type="Double" />
+          <Property Name="TOTAL_DES_HOURS" Type="Double" />
+          <Property Name="TFS_WI_ID" Type="Int32" />
+          <Property Name="TFS_WI_SEVERITY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SYSTEM_SEQ" Type="Int64" />
+          <Property Name="SPRINT_SEQ" Type="Int64" />
+          <Property Name="UPDTD_DTE" Type="DateTime" Precision="3" />
+          <Property Name="UPDTD_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="T_ASSIGNMENTS" Relationship="Self.FK_T_ASSIGNMENT_T_WORK_ITEM" FromRole="T_WORK_ITEM" ToRole="T_ASSIGNMENTS" />
+          <NavigationProperty Name="T_COMPONENT" Relationship="Self.FK_T_COMPONENT_T_WORK_ITEM" FromRole="T_WORK_ITEM" ToRole="T_COMPONENT" />
+          <NavigationProperty Name="T_SPRINT" Relationship="Self.FK_T_WORK_ITEM_T_SPRINT" FromRole="T_WORK_ITEM" ToRole="T_SPRINT" />
+          <NavigationProperty Name="T_RELEASE" Relationship="METModel.FK_T_WORK_ITEM_T_RELEASE" FromRole="T_WORK_ITEM" ToRole="T_RELEASE" />
+          <NavigationProperty Name="T_SYSTEM" Relationship="METModel.FK_T_WORK_ITEM_T_SYSTEM" FromRole="T_WORK_ITEM" ToRole="T_SYSTEM" />
+        </EntityType>
+        <EntityType Name="T_ASSIGNMENTS_HIST">
+          <Key>
+            <PropertyRef Name="ASSIGNMENT_HIST_SEQ" />
+            <PropertyRef Name="ASSIGNMENT_SEQ" />
+          </Key>
+          <Property Name="ASSIGNMENT_HIST_SEQ" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ASSIGNMENT_SEQ" Type="Int64" Nullable="false" />
+          <Property Name="WORK_ITEM_SEQ" Type="Int64" />
+          <Property Name="USER_SEQ" Type="Int64" />
+          <Property Name="STATUS_CDE" Type="Int64" />
+          <Property Name="COMMENTS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UPDTD_DTE" Type="DateTime" Precision="3" />
+          <Property Name="UPDTD_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HIST_UPDTD_DTE" Type="DateTime" Precision="3" />
+          <Property Name="HIST_UPDTD_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DUE_DATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="T_RELEASE_USER_ACCESS">
+          <Key>
+            <PropertyRef Name="USER_SEQ" />
+            <PropertyRef Name="RELEASE_SEQ" />
+            <PropertyRef Name="UPDTD_BY" />
+            <PropertyRef Name="UPDTD_DTE" />
+          </Key>
+          <Property Name="USER_SEQ" Type="Int64" Nullable="false" />
+          <Property Name="RELEASE_SEQ" Type="Int64" Nullable="false" />
+          <Property Name="UPDTD_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UPDTD_DTE" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="T_RELEASE" Relationship="Self.FK_T_RELEASE_USER_ACCESS_T_RELEASE" FromRole="T_RELEASE_USER_ACCESS" ToRole="T_RELEASE" />
+          <NavigationProperty Name="T_USERS" Relationship="Self.FK_T_RELEASE_USER_ACCESS_T_USERS" FromRole="T_RELEASE_USER_ACCESS" ToRole="T_USERS" />
+        </EntityType>
+        <EntityType Name="T_SPRINT_USER_ACCESS">
+          <Key>
+            <PropertyRef Name="USER_SEQ" />
+            <PropertyRef Name="SPRINT_SEQ" />
+            <PropertyRef Name="UPDTD_BY" />
+            <PropertyRef Name="UPDTD_DTE" />
+          </Key>
+          <Property Name="USER_SEQ" Type="Int64" Nullable="false" />
+          <Property Name="SPRINT_SEQ" Type="Int64" Nullable="false" />
+          <Property Name="UPDTD_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UPDTD_DTE" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="T_SPRINT" Relationship="Self.FK_T_SPRINT_USER_ACCESS_T_SPRINT" FromRole="T_SPRINT_USER_ACCESS" ToRole="T_SPRINT" />
+          <NavigationProperty Name="T_USERS" Relationship="Self.FK_T_SPRINT_USER_ACCESS_T_USERS" FromRole="T_SPRINT_USER_ACCESS" ToRole="T_USERS" />
+        </EntityType>
+        <Association Name="FK_T_ASSIGNMENT_T_USER">
+          <End Role="T_USERS" Type="Self.T_USERS" Multiplicity="1" />
+          <End Role="T_ASSIGNMENTS" Type="Self.T_ASSIGNMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_USERS">
+              <PropertyRef Name="USER_SEQ" />
+            </Principal>
+            <Dependent Role="T_ASSIGNMENTS">
+              <PropertyRef Name="USER_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_ASSIGNMENT_T_WORK_ITEM">
+          <End Role="T_WORK_ITEM" Type="Self.T_WORK_ITEM" Multiplicity="1" />
+          <End Role="T_ASSIGNMENTS" Type="Self.T_ASSIGNMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_WORK_ITEM">
+              <PropertyRef Name="WORK_ITEM_SEQ" />
+            </Principal>
+            <Dependent Role="T_ASSIGNMENTS">
+              <PropertyRef Name="WORK_ITEM_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_COMPONENT_T_WORK_ITEM">
+          <End Role="T_WORK_ITEM" Type="Self.T_WORK_ITEM" Multiplicity="0..1" />
+          <End Role="T_COMPONENT" Type="Self.T_COMPONENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_WORK_ITEM">
+              <PropertyRef Name="WORK_ITEM_SEQ" />
+            </Principal>
+            <Dependent Role="T_COMPONENT">
+              <PropertyRef Name="WORK_ITEM_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_CONFIG_DETAIL_T_CONFIG">
+          <End Role="T_CONFIG" Type="Self.T_CONFIG" Multiplicity="0..1" />
+          <End Role="T_CONFIG_DETAIL" Type="Self.T_CONFIG_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_CONFIG">
+              <PropertyRef Name="CONFIG_SEQ" />
+            </Principal>
+            <Dependent Role="T_CONFIG_DETAIL">
+              <PropertyRef Name="CONFIG_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_CONFIG_T_SYSTEM">
+          <End Role="T_SYSTEM" Type="Self.T_SYSTEM" Multiplicity="0..1" />
+          <End Role="T_CONFIG" Type="Self.T_CONFIG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SYSTEM">
+              <PropertyRef Name="SYSTEM_SEQ" />
+            </Principal>
+            <Dependent Role="T_CONFIG">
+              <PropertyRef Name="SYSTEM_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_RELEASE_T_SYSTEM">
+          <End Role="T_SYSTEM" Type="Self.T_SYSTEM" Multiplicity="0..1" />
+          <End Role="T_RELEASE" Type="Self.T_RELEASE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SYSTEM">
+              <PropertyRef Name="SYSTEM_SEQ" />
+            </Principal>
+            <Dependent Role="T_RELEASE">
+              <PropertyRef Name="SYSTEM_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_RELEASE_USER_ACCESS_T_RELEASE">
+          <End Role="T_RELEASE" Type="Self.T_RELEASE" Multiplicity="1" />
+          <End Role="T_RELEASE_USER_ACCESS" Type="Self.T_RELEASE_USER_ACCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_RELEASE">
+              <PropertyRef Name="RELEASE_SEQ" />
+            </Principal>
+            <Dependent Role="T_RELEASE_USER_ACCESS">
+              <PropertyRef Name="RELEASE_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_SPRINT_USER_ACCESS_T_SPRINT">
+          <End Role="T_SPRINT" Type="Self.T_SPRINT" Multiplicity="1" />
+          <End Role="T_SPRINT_USER_ACCESS" Type="Self.T_SPRINT_USER_ACCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SPRINT">
+              <PropertyRef Name="SPRINT_SEQ" />
+            </Principal>
+            <Dependent Role="T_SPRINT_USER_ACCESS">
+              <PropertyRef Name="SPRINT_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_WORK_ITEM_T_SPRINT">
+          <End Role="T_SPRINT" Type="Self.T_SPRINT" Multiplicity="0..1" />
+          <End Role="T_WORK_ITEM" Type="Self.T_WORK_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SPRINT">
+              <PropertyRef Name="SPRINT_SEQ" />
+            </Principal>
+            <Dependent Role="T_WORK_ITEM">
+              <PropertyRef Name="SPRINT_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_RELEASE_USER_ACCESS_T_USERS">
+          <End Role="T_USERS" Type="Self.T_USERS" Multiplicity="1" />
+          <End Role="T_RELEASE_USER_ACCESS" Type="Self.T_RELEASE_USER_ACCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_USERS">
+              <PropertyRef Name="USER_SEQ" />
+            </Principal>
+            <Dependent Role="T_RELEASE_USER_ACCESS">
+              <PropertyRef Name="USER_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_SPRINT_USER_ACCESS_T_USERS">
+          <End Role="T_USERS" Type="Self.T_USERS" Multiplicity="1" />
+          <End Role="T_SPRINT_USER_ACCESS" Type="Self.T_SPRINT_USER_ACCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_USERS">
+              <PropertyRef Name="USER_SEQ" />
+            </Principal>
+            <Dependent Role="T_SPRINT_USER_ACCESS">
+              <PropertyRef Name="USER_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="METEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="T_ASSIGNMENTS" EntityType="Self.T_ASSIGNMENTS" />
+          <EntitySet Name="T_COMPONENT" EntityType="Self.T_COMPONENT" />
+          <EntitySet Name="T_CONFIG" EntityType="Self.T_CONFIG" />
+          <EntitySet Name="T_CONFIG_DETAIL" EntityType="Self.T_CONFIG_DETAIL" />
+          <EntitySet Name="T_REFERENCE" EntityType="Self.T_REFERENCE" />
+          <EntitySet Name="T_RELEASE" EntityType="Self.T_RELEASE" />
+          <EntitySet Name="T_SPRINT" EntityType="Self.T_SPRINT" />
+          <EntitySet Name="T_SYSTEM" EntityType="Self.T_SYSTEM" />
+          <EntitySet Name="T_USERS" EntityType="Self.T_USERS" />
+          <EntitySet Name="T_WORK_COMPONENT" EntityType="Self.T_WORK_COMPONENT" />
+          <EntitySet Name="T_WORK_ITEM" EntityType="Self.T_WORK_ITEM" />
+          <EntitySet Name="T_ASSIGNMENTS_HIST" EntityType="Self.T_ASSIGNMENTS_HIST" />
+          <EntitySet Name="T_RELEASE_USER_ACCESS" EntityType="Self.T_RELEASE_USER_ACCESS" />
+          <EntitySet Name="T_SPRINT_USER_ACCESS" EntityType="Self.T_SPRINT_USER_ACCESS" />
+          <AssociationSet Name="FK_T_ASSIGNMENT_T_USER" Association="Self.FK_T_ASSIGNMENT_T_USER">
+            <End Role="T_USERS" EntitySet="T_USERS" />
+            <End Role="T_ASSIGNMENTS" EntitySet="T_ASSIGNMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_ASSIGNMENT_T_WORK_ITEM" Association="Self.FK_T_ASSIGNMENT_T_WORK_ITEM">
+            <End Role="T_WORK_ITEM" EntitySet="T_WORK_ITEM" />
+            <End Role="T_ASSIGNMENTS" EntitySet="T_ASSIGNMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_COMPONENT_T_WORK_ITEM" Association="Self.FK_T_COMPONENT_T_WORK_ITEM">
+            <End Role="T_WORK_ITEM" EntitySet="T_WORK_ITEM" />
+            <End Role="T_COMPONENT" EntitySet="T_COMPONENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_CONFIG_DETAIL_T_CONFIG" Association="Self.FK_T_CONFIG_DETAIL_T_CONFIG">
+            <End Role="T_CONFIG" EntitySet="T_CONFIG" />
+            <End Role="T_CONFIG_DETAIL" EntitySet="T_CONFIG_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_CONFIG_T_SYSTEM" Association="Self.FK_T_CONFIG_T_SYSTEM">
+            <End Role="T_SYSTEM" EntitySet="T_SYSTEM" />
+            <End Role="T_CONFIG" EntitySet="T_CONFIG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_RELEASE_T_SYSTEM" Association="Self.FK_T_RELEASE_T_SYSTEM">
+            <End Role="T_SYSTEM" EntitySet="T_SYSTEM" />
+            <End Role="T_RELEASE" EntitySet="T_RELEASE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_RELEASE_USER_ACCESS_T_RELEASE" Association="Self.FK_T_RELEASE_USER_ACCESS_T_RELEASE">
+            <End Role="T_RELEASE" EntitySet="T_RELEASE" />
+            <End Role="T_RELEASE_USER_ACCESS" EntitySet="T_RELEASE_USER_ACCESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_SPRINT_USER_ACCESS_T_SPRINT" Association="Self.FK_T_SPRINT_USER_ACCESS_T_SPRINT">
+            <End Role="T_SPRINT" EntitySet="T_SPRINT" />
+            <End Role="T_SPRINT_USER_ACCESS" EntitySet="T_SPRINT_USER_ACCESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_WORK_ITEM_T_SPRINT" Association="Self.FK_T_WORK_ITEM_T_SPRINT">
+            <End Role="T_SPRINT" EntitySet="T_SPRINT" />
+            <End Role="T_WORK_ITEM" EntitySet="T_WORK_ITEM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_RELEASE_USER_ACCESS_T_USERS" Association="Self.FK_T_RELEASE_USER_ACCESS_T_USERS">
+            <End Role="T_USERS" EntitySet="T_USERS" />
+            <End Role="T_RELEASE_USER_ACCESS" EntitySet="T_RELEASE_USER_ACCESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_SPRINT_USER_ACCESS_T_USERS" Association="Self.FK_T_SPRINT_USER_ACCESS_T_USERS">
+            <End Role="T_USERS" EntitySet="T_USERS" />
+            <End Role="T_SPRINT_USER_ACCESS" EntitySet="T_SPRINT_USER_ACCESS" />
+          </AssociationSet>
+          <FunctionImport Name="USP_RELEASE_GET_USER_LIST" ReturnType="Collection(METModel.USP_RELEASE_GET_USER_LIST_Result)">
+          <Parameter Name="p_ReleaseSeqId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(METModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(METModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="USP_ASSIGNMENT_GET_ALL_STATUSES" ReturnType="Collection(String)" />
+          <FunctionImport Name="USP_ASSIGNMENT_GET_CURRENT" ReturnType="Collection(METModel.USP_ASSIGNMENT_GET_CURRENT_Result)">
+          <Parameter Name="p_workItemID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="USP_ASSIGNMENT_GET_HISTORY" ReturnType="Collection(METModel.USP_ASSIGNMENT_GET_HISTORY_Result)">
+          <Parameter Name="p_workItemID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_ASSIGNMENT_SAVE_DETAILS">
+            <Parameter Name="p_ItemID" Mode="In" Type="Int64" />
+            <Parameter Name="p_userID" Mode="In" Type="Int64" />
+            <Parameter Name="p_status" Mode="In" Type="Int64" />
+            <Parameter Name="p_comments" Mode="In" Type="String" />
+            <Parameter Name="p_updtd_by" Mode="In" Type="String" />
+            <Parameter Name="p_duedate" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_CLEAR_COMPONENT_CONFIG">
+          <Parameter Name="systemID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_COMPONENT_CONFIG_SAVE">
+            <Parameter Name="systemID" Mode="In" Type="Int32" />
+            <Parameter Name="p_complexity" Mode="In" Type="Int32" />
+            <Parameter Name="p_type" Mode="In" Type="Int32" />
+            <Parameter Name="p_weight" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="USP_DELETE_ITEM_COMPONENT">
+          <Parameter Name="id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GET_COMP_COMPLX_REF" ReturnType="Collection(METModel.USP_GET_COMP_COMPLX_REF_Result)" />
+          <FunctionImport Name="USP_GET_COMP_TYPE_REF" ReturnType="Collection(METModel.USP_GET_COMP_TYPE_REF_Result)" />
+          <FunctionImport Name="USP_GET_COMPONENTS_FOR_ITEM" ReturnType="Collection(METModel.USP_GET_COMPONENTS_FOR_ITEM_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="compType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GET_CONFIG_VALUES" ReturnType="Collection(METModel.USP_GET_CONFIG_VALUES_Result)">
+            <Parameter Name="p_SystemID" Mode="In" Type="Int32" />
+            <Parameter Name="p_GroupCde" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GET_ITEM_COMPONENTS" ReturnType="Collection(METModel.USP_GET_ITEM_COMPONENTS_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GET_WORK_ITEM" ReturnType="Collection(METModel.USP_GET_WORK_ITEM_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_INSERT_ITEM_COMPONENTS">
+            <Parameter Name="work_item_id" Mode="In" Type="Int64" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="complexity" Mode="In" Type="Int64" />
+            <Parameter Name="type" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="USP_INSERT_WORK_ITEM">
+            <Parameter Name="tfs_id" Mode="In" Type="Int32" />
+            <Parameter Name="title" Mode="In" Type="String" />
+            <Parameter Name="type" Mode="In" Type="String" />
+            <Parameter Name="severity" Mode="In" Type="String" />
+            <Parameter Name="systemSeq" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_LANDING_GET_NON_TFS_RELEASE_LIST" ReturnType="Collection(METModel.USP_LANDING_GET_NON_TFS_RELEASE_LIST_Result)">
+          <Parameter Name="p_systemTfsGuid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_LANDING_GET_RELEASE_LIST" ReturnType="Collection(METModel.USP_LANDING_GET_RELEASE_LIST_Result)">
+          <Parameter Name="p_SystemID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_LANDING_GET_SYSTEM_LIST" ReturnType="Collection(METModel.USP_LANDING_GET_SYSTEM_LIST_Result)" />
+          <FunctionImport Name="USP_LANDING_SEARCH_RELEASE" ReturnType="Collection(METModel.USP_LANDING_SEARCH_RELEASE_Result)">
+            <Parameter Name="p_SysSeq" Mode="In" Type="Int32" />
+            <Parameter Name="p_ReleaseName" Mode="In" Type="String" />
+            <Parameter Name="p_ReleaseTfsId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_LANDING_SEARCH_SYSTEM" ReturnType="Collection(METModel.USP_LANDING_SEARCH_SYSTEM_Result)">
+            <Parameter Name="p_SysName" Mode="In" Type="String" />
+            <Parameter Name="p_TfsGuid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_RELEASE_DELETE_WORK_ITEM">
+          <Parameter Name="p_WorkItemID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_RELEASE_GENERATE_REPORT" ReturnType="Collection(METModel.USP_RELEASE_GENERATE_REPORT_Result)">
+          <Parameter Name="p_ReleaseId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_RELEASE_GET_ATTRIBUTE_LIST" ReturnType="Collection(METModel.USP_RELEASE_GET_ATTRIBUTE_LIST_Result)">
+          <Parameter Name="p_ReleaseSeqID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_RELEASE_GET_RELEASE_META" ReturnType="Collection(METModel.USP_RELEASE_GET_RELEASE_META_Result)">
+          <Parameter Name="p_ReleaseSeqID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_RELEASE_GET_WORK_ITEM_COMPONENT" ReturnType="Collection(METModel.USP_RELEASE_GET_WORK_ITEM_COMPONENT_Result)">
+          <Parameter Name="p_WorkItemID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_RELEASE_GET_WORK_ITEM_LIST" ReturnType="Collection(METModel.USP_RELEASE_GET_WORK_ITEM_LIST_Result)">
+          <Parameter Name="p_ReleaseSeqID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_RELEASE_SAVE_NON_TFS" ReturnType="Collection(Int64)">
+            <Parameter Name="p_SystemSeqId" Mode="In" Type="Int32" />
+            <Parameter Name="p_ReleaseTitle" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_RELEASE_SAVE_RELEASE_META" ReturnType="Collection(String)">
+            <Parameter Name="p_RELEASE_SEQ" Mode="In" Type="Int32" />
+            <Parameter Name="p_UAT_KICK_OFF" Mode="In" Type="Int32" />
+            <Parameter Name="p_NBR_PLAYBOOK" Mode="In" Type="Int32" />
+            <Parameter Name="p_NBR_ENVIRONMENT" Mode="In" Type="Int32" />
+            <Parameter Name="p_NBR_BUILDS" Mode="In" Type="Int32" />
+            <Parameter Name="p_NBR_DEPLOYMENTS" Mode="In" Type="Int32" />
+            <Parameter Name="p_NBR_PLAYBOOK_MEETING" Mode="In" Type="Int32" />
+            <Parameter Name="p_NBR_DB_REFRESH" Mode="In" Type="Int32" />
+            <Parameter Name="p_NBR_SECURITY_SUPPORT_HOUR" Mode="In" Type="Int32" />
+            <Parameter Name="p_NBR_LOAD_TEST" Mode="In" Type="Int32" />
+            <Parameter Name="p_NBR_BATCH_VOLUME_TEST" Mode="In" Type="Int32" />
+            <Parameter Name="p_NBR_SECURITY_TEST" Mode="In" Type="Int32" />
+            <Parameter Name="p_NBR_DESIGN_SESSION" Mode="In" Type="Int32" />
+            <Parameter Name="p_NBR_ARCHITECTURE_REVIEW" Mode="In" Type="Int32" />
+            <Parameter Name="p_TFS_RELEASE_ID" Mode="In" Type="Int32" />
+            <Parameter Name="p_RELEASE_TITLE" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_SAVE_ITEM_HOURS">
+            <Parameter Name="id" Mode="In" Type="Int64" />
+            <Parameter Name="dev_hours" Mode="In" Type="Double" />
+            <Parameter Name="des_hours" Mode="In" Type="Double" />
+            <Parameter Name="total_hours" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="USP_SAVE_WORK_ITEM_RELEASE">
+            <Parameter Name="p_WorkItemID" Mode="In" Type="Int32" />
+            <Parameter Name="p_ReleaseID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_SYSTEM_GET_RECORD" ReturnType="Collection(METModel.USP_SYSTEM_GET_RECORD_Result)">
+          <Parameter Name="system_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_TABLEHELP_GET_REF_GROUP" ReturnType="Collection(METModel.USP_TABLEHELP_GET_REF_GROUP_Result)">
+          <Parameter Name="p_groupCde" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_TABLEHELP_GET_REF_VALUES" ReturnType="Collection(METModel.USP_TABLEHELP_GET_REF_VALUES_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_TABLEHELP_GET_REFSEQ" ReturnType="Collection(Int64)">
+          <Parameter Name="p_entityText" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_TABLEHELP_GET_REFVALUE" ReturnType="Collection(String)">
+          <Parameter Name="p_refSeq" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="USP_TABLEHELP_GET_SYSTEMNAME" ReturnType="Collection(String)">
+          <Parameter Name="p_systemSeq" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="USP_TABLEHELP_GET_TFSID" ReturnType="Collection(Int32)">
+          <Parameter Name="p_workItemSeq" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="USP_TABLEHELP_GET_TFSID_SYSTEM" ReturnType="Collection(String)">
+          <Parameter Name="p_systemSeq" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="USP_TABLEHELP_GET_USERNAME" ReturnType="Collection(String)">
+          <Parameter Name="p_userSeq" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="USP_UPDATE_ITEM_COMPONENTS">
+            <Parameter Name="component_seq" Mode="In" Type="Int64" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="type" Mode="In" Type="Int64" />
+            <Parameter Name="complexity" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="USP_USER_DELETE_DATA" ReturnType="Collection(String)">
+            <Parameter Name="p_userName" Mode="In" Type="String" />
+            <Parameter Name="p_sysID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_USER_GET_DATA" ReturnType="Collection(METModel.USP_USER_GET_DATA_Result)">
+          <Parameter Name="p_userName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_USER_GET_PROJECT_LIST" ReturnType="Collection(METModel.USP_USER_GET_PROJECT_LIST_Result)">
+          <Parameter Name="p_systemID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_USER_GET_SEARCH_ITEMS" ReturnType="Collection(METModel.USP_USER_GET_SEARCH_ITEMS_Result)">
+            <Parameter Name="p_userSeq" Mode="In" Type="Int64" />
+            <Parameter Name="p_sysSeq" Mode="In" Type="Int64" />
+            <Parameter Name="p_releaseSeq" Mode="In" Type="Int64" />
+            <Parameter Name="p_statusSeq" Mode="In" Type="Int64" />
+            <Parameter Name="p_itemType" Mode="In" Type="String" />
+            <Parameter Name="p_startDte" Mode="In" Type="DateTime" />
+            <Parameter Name="p_endDte" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="USP_USER_GET_USER_ITEMS" ReturnType="Collection(METModel.USP_USER_GET_USER_ITEMS_Result)">
+          <Parameter Name="p_userSeq" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="USP_USER_GET_USER_LIST" ReturnType="Collection(METModel.USP_USER_GET_USER_LIST_Result)">
+          <Parameter Name="p_systemID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_USER_SAVE_DATA">
+            <Parameter Name="p_userName" Mode="In" Type="String" />
+            <Parameter Name="p_userRole" Mode="In" Type="Int32" />
+            <Parameter Name="p_userSystemID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_USER_SAVE_USER_ASSIGNMENT">
+            <Parameter Name="p_ItemID" Mode="In" Type="Int64" />
+            <Parameter Name="p_userID" Mode="In" Type="Int64" />
+            <Parameter Name="p_dueDate" Mode="In" Type="DateTime" />
+            <Parameter Name="p_updtd_by" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_USER_UPDATE_DATA">
+            <Parameter Name="p_userName" Mode="In" Type="String" />
+            <Parameter Name="p_systemId" Mode="In" Type="Int64" />
+            <Parameter Name="p_role" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="USP_WORK_ITEM_UPDATE_ASSIGNMENT">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="workItemId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <AssociationSet Name="FK_T_SPRINT_T_RELEASE" Association="METModel.FK_T_SPRINT_T_RELEASE">
+            <End Role="T_RELEASE" EntitySet="T_RELEASE" />
+            <End Role="T_SPRINT" EntitySet="T_SPRINT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_WORK_ITEM_T_RELEASE" Association="METModel.FK_T_WORK_ITEM_T_RELEASE">
+            <End Role="T_RELEASE" EntitySet="T_RELEASE" />
+            <End Role="T_WORK_ITEM" EntitySet="T_WORK_ITEM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_WORK_ITEM_T_SYSTEM" Association="METModel.FK_T_WORK_ITEM_T_SYSTEM">
+            <End Role="T_SYSTEM" EntitySet="T_SYSTEM" />
+            <End Role="T_WORK_ITEM" EntitySet="T_WORK_ITEM" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="USP_RELEASE_GET_USER_LIST_Result">
+          <Property Type="Int64" Name="USER_SEQ" Nullable="false" />
+          <Property Type="String" Name="USER_NAME" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="USP_ASSIGNMENT_GET_CURRENT_Result">
+          <Property Type="Int64" Name="ASSIGNMENT_SEQ" Nullable="false" />
+          <Property Type="Int64" Name="WORK_ITEM_SEQ" Nullable="false" />
+          <Property Type="Int64" Name="USER_SEQ" Nullable="false" />
+          <Property Type="Int64" Name="STATUS_CDE" Nullable="false" />
+          <Property Type="String" Name="COMMENTS" Nullable="true" />
+          <Property Type="DateTime" Name="UPDTD_DTE" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UPDTD_BY" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DUE_DTE" Nullable="true" Precision="23" />
+          <Property Type="String" Name="USER_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="STATUS_TEXT" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_ASSIGNMENT_GET_HISTORY_Result">
+          <Property Type="Int64" Name="ASSIGNMENT_HIST_SEQ" Nullable="false" />
+          <Property Type="Int64" Name="ASSIGNMENT_SEQ" Nullable="false" />
+          <Property Type="Int64" Name="WORK_ITEM_SEQ" Nullable="true" />
+          <Property Type="Int64" Name="USER_SEQ" Nullable="true" />
+          <Property Type="Int64" Name="STATUS_CDE" Nullable="true" />
+          <Property Type="String" Name="COMMENTS" Nullable="true" />
+          <Property Type="DateTime" Name="UPDTD_DTE" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UPDTD_BY" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="HIST_UPDTD_DTE" Nullable="true" Precision="23" />
+          <Property Type="String" Name="HIST_UPDTD_BY" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DUE_DATE" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="USP_GET_COMP_COMPLX_REF_Result">
+          <Property Type="Int64" Name="REFERENCE_SEQ" Nullable="false" />
+          <Property Type="String" Name="GROUP_CODE" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ENTITY_TEXT" Nullable="true" />
+          <Property Type="Int64" Name="ORDER_CDE" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_GET_COMP_TYPE_REF_Result">
+          <Property Type="Int64" Name="REFERENCE_SEQ" Nullable="false" />
+          <Property Type="String" Name="GROUP_CODE" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ENTITY_TEXT" Nullable="true" />
+          <Property Type="Int64" Name="ORDER_CDE" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_GET_COMPONENTS_FOR_ITEM_Result">
+          <Property Type="Int64" Name="COMPONENT_SEQ" Nullable="false" />
+          <Property Type="Int64" Name="WORK_ITEM_SEQ" Nullable="true" />
+          <Property Type="String" Name="NAME" Nullable="true" />
+          <Property Type="Int64" Name="TYPE" Nullable="true" />
+          <Property Type="Int64" Name="COMPLEXITY" Nullable="true" />
+          <Property Type="String" Name="MULTILINGUAL" Nullable="true" MaxLength="10" />
+          <Property Type="Int64" Name="RELEASE_SEQ" Nullable="true" />
+          <Property Type="String" Name="COMPLEXITY_TEXT" Nullable="true" />
+          <Property Type="String" Name="TYPE_TEXT" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_GET_CONFIG_VALUES_Result">
+          <Property Type="Int64" Name="CONFIG_SEQ" Nullable="false" />
+          <Property Type="Int64" Name="SYSTEM_SEQ" Nullable="true" />
+          <Property Type="String" Name="CONFIG_NAME" Nullable="true" />
+          <Property Type="Int64" Name="CONFIG_DETAIL_SEQ" Nullable="false" />
+          <Property Type="Int64" Name="CONFIG_SEQ1" Nullable="true" />
+          <Property Type="Int64" Name="COMPLEXITY" Nullable="true" />
+          <Property Type="Int64" Name="TYPE" Nullable="true" />
+          <Property Type="Double" Name="WEIGHT" Nullable="true" />
+          <Property Type="String" Name="TypeText" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_GET_ITEM_COMPONENTS_Result">
+          <Property Type="Int64" Name="COMPONENT_SEQ" Nullable="false" />
+          <Property Type="Int64" Name="WORK_ITEM_SEQ" Nullable="true" />
+          <Property Type="String" Name="NAME" Nullable="true" />
+          <Property Type="Int64" Name="TYPE" Nullable="true" />
+          <Property Type="Int64" Name="COMPLEXITY" Nullable="true" />
+          <Property Type="String" Name="MULTILINGUAL" Nullable="true" MaxLength="10" />
+          <Property Type="Int64" Name="RELEASE_SEQ" Nullable="true" />
+          <Property Type="String" Name="COMPLEXITY_TEXT" Nullable="true" />
+          <Property Type="String" Name="TYPE_TEXT" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_GET_WORK_ITEM_Result">
+          <Property Type="Int64" Name="WORK_ITEM_SEQ" Nullable="false" />
+          <Property Type="Int64" Name="RELEASE_SEQ" Nullable="true" />
+          <Property Type="String" Name="TYPE" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TITLE" Nullable="true" />
+          <Property Type="Double" Name="TOTAL_HOURS" Nullable="true" />
+          <Property Type="Double" Name="TOTAL_DEV_HOURS" Nullable="true" />
+          <Property Type="Double" Name="TOTAL_DES_HOURS" Nullable="true" />
+          <Property Type="Int32" Name="TFS_WI_ID" Nullable="true" />
+          <Property Type="String" Name="TFS_WI_SEVERITY" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="SYSTEM_SEQ" Nullable="true" />
+          <Property Type="Int64" Name="SPRINT_SEQ" Nullable="true" />
+          <Property Type="DateTime" Name="UPDTD_DTE" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UPDTD_BY" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RELEASE_NAME" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="USP_LANDING_GET_NON_TFS_RELEASE_LIST_Result">
+          <Property Type="String" Name="RELEASE_NBR" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="RELEASE_SEQ" Nullable="false" />
+          <Property Type="Int32" Name="TFS_RELEASE_ID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_LANDING_GET_RELEASE_LIST_Result">
+          <Property Type="Int64" Name="RELEASE_SEQ" Nullable="false" />
+          <Property Type="String" Name="RELEASE_NBR" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="USP_LANDING_GET_SYSTEM_LIST_Result">
+          <Property Type="Int64" Name="SYSTEM_SEQ" Nullable="false" />
+          <Property Type="String" Name="SYSTEM_NAME" Nullable="false" />
+          <Property Type="String" Name="TFS_GUID" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="USP_LANDING_SEARCH_RELEASE_Result">
+          <Property Type="Int64" Name="RELEASE_SEQ" Nullable="false" />
+          <Property Type="String" Name="RELEASE_NBR" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="SYSTEM_SEQ" Nullable="true" />
+          <Property Type="Int32" Name="UAT_KICK_OFF" Nullable="true" />
+          <Property Type="Int32" Name="NBR_PLAYBOOK" Nullable="true" />
+          <Property Type="Int32" Name="NBR_ENVIRONMENT" Nullable="true" />
+          <Property Type="Int32" Name="NBR_BUILDS" Nullable="true" />
+          <Property Type="Int32" Name="NBR_DEPLOYMENTS" Nullable="true" />
+          <Property Type="Int32" Name="NBR_PLAYBOOK_MEETING" Nullable="true" />
+          <Property Type="Int32" Name="NBR_DB_REFRESH" Nullable="true" />
+          <Property Type="Int32" Name="NBR_SECURITY_SUPPORT_HOUR" Nullable="true" />
+          <Property Type="Int32" Name="NBR_LOAD_TEST" Nullable="true" />
+          <Property Type="Int32" Name="NBR_BATCH_VOLUME_TEST" Nullable="true" />
+          <Property Type="Int32" Name="NBR_SECURITY_TEST" Nullable="true" />
+          <Property Type="Int32" Name="NBR_DESIGN_SESSION" Nullable="true" />
+          <Property Type="Int32" Name="NBR_ARCHITECTURE_REVIEW" Nullable="true" />
+          <Property Type="Int32" Name="TFS_RELEASE_ID" Nullable="true" />
+          <Property Type="String" Name="UPDTD_BY" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UPDTD_DTE" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="IsExistingRelease" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_LANDING_SEARCH_SYSTEM_Result">
+          <Property Type="Int64" Name="SYSTEM_SEQ" Nullable="false" />
+          <Property Type="String" Name="SYSTEM_NAME" Nullable="false" />
+          <Property Type="String" Name="TFS_GUID" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="USP_RELEASE_GENERATE_REPORT_Result">
+          <Property Type="Int32" Name="TFS_WI_ID" Nullable="true" />
+          <Property Type="String" Name="TITLE" Nullable="true" />
+          <Property Type="String" Name="TYPE" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TFS_WI_SEVERITY" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="WI_STORY_POINTS" Nullable="true" />
+          <Property Type="Int64" Name="WI_TOTAL_COUNT" Nullable="true" />
+          <Property Type="Int64" Name="COMPONENT_COUNT" Nullable="false" />
+          <Property Type="String" Name="COMPONENT_NAME" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="USP_RELEASE_GET_ATTRIBUTE_LIST_Result">
+          <Property Type="Int64" Name="COMPONENT_SEQ" Nullable="false" />
+          <Property Type="Int64" Name="WORK_ITEM_SEQ" Nullable="true" />
+          <Property Type="String" Name="NAME" Nullable="true" />
+          <Property Type="Int64" Name="TYPE" Nullable="true" />
+          <Property Type="Int64" Name="COMPLEXITY" Nullable="true" />
+          <Property Type="String" Name="MULTILINGUAL" Nullable="true" MaxLength="10" />
+          <Property Type="Int64" Name="RELEASE_SEQ" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_RELEASE_GET_RELEASE_META_Result">
+          <Property Type="Int64" Name="RELEASE_SEQ" Nullable="false" />
+          <Property Type="String" Name="RELEASE_NBR" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="SYSTEM_SEQ" Nullable="true" />
+          <Property Type="Int32" Name="UAT_KICK_OFF" Nullable="true" />
+          <Property Type="Int32" Name="NBR_PLAYBOOK" Nullable="true" />
+          <Property Type="Int32" Name="NBR_ENVIRONMENT" Nullable="true" />
+          <Property Type="Int32" Name="NBR_BUILDS" Nullable="true" />
+          <Property Type="Int32" Name="NBR_DEPLOYMENTS" Nullable="true" />
+          <Property Type="Int32" Name="NBR_PLAYBOOK_MEETING" Nullable="true" />
+          <Property Type="Int32" Name="NBR_DB_REFRESH" Nullable="true" />
+          <Property Type="Int32" Name="NBR_SECURITY_SUPPORT_HOUR" Nullable="true" />
+          <Property Type="Int32" Name="NBR_LOAD_TEST" Nullable="true" />
+          <Property Type="Int32" Name="NBR_BATCH_VOLUME_TEST" Nullable="true" />
+          <Property Type="Int32" Name="NBR_SECURITY_TEST" Nullable="true" />
+          <Property Type="Int32" Name="NBR_DESIGN_SESSION" Nullable="true" />
+          <Property Type="Int32" Name="NBR_ARCHITECTURE_REVIEW" Nullable="true" />
+          <Property Type="Int32" Name="TFS_RELEASE_ID" Nullable="true" />
+          <Property Type="String" Name="UPDTD_BY" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UPDTD_DTE" Nullable="true" Precision="23" />
+          <Property Type="String" Name="PROJECT_NAME" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_RELEASE_GET_WORK_ITEM_COMPONENT_Result">
+          <Property Type="Int64" Name="COMPONENT_SEQ" Nullable="false" />
+          <Property Type="Int64" Name="WORK_ITEM_SEQ" Nullable="true" />
+          <Property Type="String" Name="NAME" Nullable="true" />
+          <Property Type="Int64" Name="TYPE" Nullable="true" />
+          <Property Type="Int64" Name="COMPLEXITY" Nullable="true" />
+          <Property Type="String" Name="MULTILINGUAL" Nullable="true" MaxLength="10" />
+          <Property Type="Int64" Name="RELEASE_SEQ" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_RELEASE_GET_WORK_ITEM_LIST_Result">
+          <Property Type="Int64" Name="WORK_ITEM_SEQ" Nullable="false" />
+          <Property Type="Int64" Name="RELEASE_SEQ" Nullable="true" />
+          <Property Type="String" Name="TYPE" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TITLE" Nullable="true" />
+          <Property Type="Double" Name="TOTAL_HOURS" Nullable="true" />
+          <Property Type="Double" Name="TOTAL_DEV_HOURS" Nullable="true" />
+          <Property Type="Double" Name="TOTAL_DES_HOURS" Nullable="true" />
+          <Property Type="Int32" Name="TFS_WI_ID" Nullable="true" />
+          <Property Type="String" Name="TFS_WI_SEVERITY" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="SYSTEM_SEQ" Nullable="true" />
+          <Property Type="Int64" Name="SPRINT_SEQ" Nullable="true" />
+          <Property Type="DateTime" Name="UPDTD_DTE" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UPDTD_BY" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ASSIGNMENT" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="USP_SYSTEM_GET_RECORD_Result">
+          <Property Type="Int64" Name="SYSTEM_SEQ" Nullable="false" />
+          <Property Type="String" Name="SYSTEM_NAME" Nullable="false" />
+          <Property Type="String" Name="TFS_GUID" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="USP_TABLEHELP_GET_REF_GROUP_Result">
+          <Property Type="Int64" Name="REFERENCE_SEQ" Nullable="false" />
+          <Property Type="String" Name="GROUP_CODE" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ENTITY_TEXT" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_TABLEHELP_GET_REF_VALUES_Result">
+          <Property Type="Int64" Name="REFERENCE_SEQ" Nullable="false" />
+          <Property Type="String" Name="GROUP_CODE" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ENTITY_TEXT" Nullable="true" />
+          <Property Type="Int64" Name="ORDER_CDE" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_USER_GET_DATA_Result">
+          <Property Type="String" Name="USERNAME" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="SYSTEM_SEQ" Nullable="true" />
+          <Property Type="Int64" Name="USER_ROLE" Nullable="true" />
+          <Property Type="String" Name="ENTITY_TEXT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SYSTEM_NAME" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="USP_USER_GET_PROJECT_LIST_Result">
+          <Property Type="Int64" Name="SYSTEM_SEQ" Nullable="false" />
+          <Property Type="String" Name="SYSTEM_NAME" Nullable="false" />
+          <Property Type="String" Name="TFS_GUID" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="USP_USER_GET_SEARCH_ITEMS_Result">
+          <Property Type="Int64" Name="WORK_ITEM_SEQ" Nullable="false" />
+          <Property Type="Int64" Name="RELEASE_SEQ" Nullable="true" />
+          <Property Type="String" Name="TYPE" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TITLE" Nullable="true" />
+          <Property Type="Double" Name="TOTAL_HOURS" Nullable="true" />
+          <Property Type="Double" Name="TOTAL_DEV_HOURS" Nullable="true" />
+          <Property Type="Double" Name="TOTAL_DES_HOURS" Nullable="true" />
+          <Property Type="Int32" Name="TFS_WI_ID" Nullable="true" />
+          <Property Type="String" Name="TFS_WI_SEVERITY" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="SYSTEM_SEQ" Nullable="true" />
+          <Property Type="Int64" Name="SPRINT_SEQ" Nullable="true" />
+          <Property Type="DateTime" Name="UPDTD_DTE" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UPDTD_BY" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RELEASE_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ASSIGNMENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ASSIGNMENT_STATUS" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_USER_GET_USER_ITEMS_Result">
+          <Property Type="Int64" Name="WORK_ITEM_SEQ" Nullable="false" />
+          <Property Type="Int64" Name="RELEASE_SEQ" Nullable="true" />
+          <Property Type="String" Name="TYPE" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TITLE" Nullable="true" />
+          <Property Type="Double" Name="TOTAL_HOURS" Nullable="true" />
+          <Property Type="Double" Name="TOTAL_DEV_HOURS" Nullable="true" />
+          <Property Type="Double" Name="TOTAL_DES_HOURS" Nullable="true" />
+          <Property Type="Int32" Name="TFS_WI_ID" Nullable="true" />
+          <Property Type="String" Name="TFS_WI_SEVERITY" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="SYSTEM_SEQ" Nullable="true" />
+          <Property Type="Int64" Name="SPRINT_SEQ" Nullable="true" />
+          <Property Type="DateTime" Name="UPDTD_DTE" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UPDTD_BY" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="USP_USER_GET_USER_LIST_Result">
+          <Property Type="String" Name="USER_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="SYSTEM_SEQ" Nullable="true" />
+          <Property Type="Int64" Name="USER_ROLE" Nullable="true" />
+          <Property Type="String" Name="ENTITY_TEXT" Nullable="true" />
+          <Property Type="String" Name="SYSTEM_NAME" Nullable="false" />
+          <Property Type="Int64" Name="USER_SEQ" Nullable="false" />
+        </ComplexType>
+        <Association Name="FK_T_SPRINT_T_RELEASE">
+          <End Type="METModel.T_RELEASE" Role="T_RELEASE" Multiplicity="0..1" />
+          <End Type="METModel.T_SPRINT" Role="T_SPRINT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_RELEASE">
+              <PropertyRef Name="RELEASE_SEQ" />
+            </Principal>
+            <Dependent Role="T_SPRINT">
+              <PropertyRef Name="RELEASE_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_WORK_ITEM_T_RELEASE">
+          <End Type="METModel.T_RELEASE" Role="T_RELEASE" Multiplicity="0..1" />
+          <End Type="METModel.T_WORK_ITEM" Role="T_WORK_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_RELEASE">
+              <PropertyRef Name="RELEASE_SEQ" />
+            </Principal>
+            <Dependent Role="T_WORK_ITEM">
+              <PropertyRef Name="RELEASE_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_WORK_ITEM_T_SYSTEM">
+          <End Type="METModel.T_SYSTEM" Role="T_SYSTEM" Multiplicity="0..1" />
+          <End Type="METModel.T_WORK_ITEM" Role="T_WORK_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SYSTEM">
+              <PropertyRef Name="SYSTEM_SEQ" />
+            </Principal>
+            <Dependent Role="T_WORK_ITEM">
+              <PropertyRef Name="SYSTEM_SEQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="METModelStoreContainer" CdmEntityContainer="METEntities">
+          <EntitySetMapping Name="T_ASSIGNMENTS">
+            <EntityTypeMapping TypeName="METModel.T_ASSIGNMENTS">
+              <MappingFragment StoreEntitySet="T_ASSIGNMENTS">
+                <ScalarProperty Name="ASSIGNMENT_SEQ" ColumnName="ASSIGNMENT_SEQ" />
+                <ScalarProperty Name="WORK_ITEM_SEQ" ColumnName="WORK_ITEM_SEQ" />
+                <ScalarProperty Name="USER_SEQ" ColumnName="USER_SEQ" />
+                <ScalarProperty Name="STATUS_CDE" ColumnName="STATUS_CDE" />
+                <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
+                <ScalarProperty Name="UPDTD_DTE" ColumnName="UPDTD_DTE" />
+                <ScalarProperty Name="UPDTD_BY" ColumnName="UPDTD_BY" />
+                <ScalarProperty Name="DUE_DTE" ColumnName="DUE_DTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_COMPONENT">
+            <EntityTypeMapping TypeName="METModel.T_COMPONENT">
+              <MappingFragment StoreEntitySet="T_COMPONENT">
+                <ScalarProperty Name="COMPONENT_SEQ" ColumnName="COMPONENT_SEQ" />
+                <ScalarProperty Name="WORK_ITEM_SEQ" ColumnName="WORK_ITEM_SEQ" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="COMPLEXITY" ColumnName="COMPLEXITY" />
+                <ScalarProperty Name="MULTILINGUAL" ColumnName="MULTILINGUAL" />
+                <ScalarProperty Name="RELEASE_SEQ" ColumnName="RELEASE_SEQ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_CONFIG">
+            <EntityTypeMapping TypeName="METModel.T_CONFIG">
+              <MappingFragment StoreEntitySet="T_CONFIG">
+                <ScalarProperty Name="CONFIG_SEQ" ColumnName="CONFIG_SEQ" />
+                <ScalarProperty Name="SYSTEM_SEQ" ColumnName="SYSTEM_SEQ" />
+                <ScalarProperty Name="CONFIG_NAME" ColumnName="CONFIG_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_CONFIG_DETAIL">
+            <EntityTypeMapping TypeName="METModel.T_CONFIG_DETAIL">
+              <MappingFragment StoreEntitySet="T_CONFIG_DETAIL">
+                <ScalarProperty Name="CONFIG_DETAIL_SEQ" ColumnName="CONFIG_DETAIL_SEQ" />
+                <ScalarProperty Name="CONFIG_SEQ" ColumnName="CONFIG_SEQ" />
+                <ScalarProperty Name="COMPLEXITY" ColumnName="COMPLEXITY" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_REFERENCE">
+            <EntityTypeMapping TypeName="METModel.T_REFERENCE">
+              <MappingFragment StoreEntitySet="T_REFERENCE">
+                <ScalarProperty Name="REFERENCE_SEQ" ColumnName="REFERENCE_SEQ" />
+                <ScalarProperty Name="GROUP_CODE" ColumnName="GROUP_CODE" />
+                <ScalarProperty Name="ENTITY_TEXT" ColumnName="ENTITY_TEXT" />
+                <ScalarProperty Name="ORDER_CDE" ColumnName="ORDER_CDE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_RELEASE">
+            <EntityTypeMapping TypeName="METModel.T_RELEASE">
+              <MappingFragment StoreEntitySet="T_RELEASE">
+                <ScalarProperty Name="RELEASE_SEQ" ColumnName="RELEASE_SEQ" />
+                <ScalarProperty Name="RELEASE_NBR" ColumnName="RELEASE_NBR" />
+                <ScalarProperty Name="SYSTEM_SEQ" ColumnName="SYSTEM_SEQ" />
+                <ScalarProperty Name="UAT_KICK_OFF" ColumnName="UAT_KICK_OFF" />
+                <ScalarProperty Name="NBR_PLAYBOOK" ColumnName="NBR_PLAYBOOK" />
+                <ScalarProperty Name="NBR_ENVIRONMENT" ColumnName="NBR_ENVIRONMENT" />
+                <ScalarProperty Name="NBR_BUILDS" ColumnName="NBR_BUILDS" />
+                <ScalarProperty Name="NBR_DEPLOYMENTS" ColumnName="NBR_DEPLOYMENTS" />
+                <ScalarProperty Name="NBR_PLAYBOOK_MEETING" ColumnName="NBR_PLAYBOOK_MEETING" />
+                <ScalarProperty Name="NBR_DB_REFRESH" ColumnName="NBR_DB_REFRESH" />
+                <ScalarProperty Name="NBR_SECURITY_SUPPORT_HOUR" ColumnName="NBR_SECURITY_SUPPORT_HOUR" />
+                <ScalarProperty Name="NBR_LOAD_TEST" ColumnName="NBR_LOAD_TEST" />
+                <ScalarProperty Name="NBR_BATCH_VOLUME_TEST" ColumnName="NBR_BATCH_VOLUME_TEST" />
+                <ScalarProperty Name="NBR_SECURITY_TEST" ColumnName="NBR_SECURITY_TEST" />
+                <ScalarProperty Name="NBR_DESIGN_SESSION" ColumnName="NBR_DESIGN_SESSION" />
+                <ScalarProperty Name="NBR_ARCHITECTURE_REVIEW" ColumnName="NBR_ARCHITECTURE_REVIEW" />
+                <ScalarProperty Name="TFS_RELEASE_ID" ColumnName="TFS_RELEASE_ID" />
+                <ScalarProperty Name="UPDTD_BY" ColumnName="UPDTD_BY" />
+                <ScalarProperty Name="UPDTD_DTE" ColumnName="UPDTD_DTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_SPRINT">
+            <EntityTypeMapping TypeName="METModel.T_SPRINT">
+              <MappingFragment StoreEntitySet="T_SPRINT">
+                <ScalarProperty Name="RELEASE_SEQ" ColumnName="RELEASE_SEQ" />
+                <ScalarProperty Name="SPRINT_SEQ" ColumnName="SPRINT_SEQ" />
+                <ScalarProperty Name="NBR_STORY_POINTS" ColumnName="NBR_STORY_POINTS" />
+                <ScalarProperty Name="SPRINT_NAME" ColumnName="SPRINT_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_SYSTEM">
+            <EntityTypeMapping TypeName="METModel.T_SYSTEM">
+              <MappingFragment StoreEntitySet="T_SYSTEM">
+                <ScalarProperty Name="SYSTEM_SEQ" ColumnName="SYSTEM_SEQ" />
+                <ScalarProperty Name="SYSTEM_NAME" ColumnName="SYSTEM_NAME" />
+                <ScalarProperty Name="TFS_GUID" ColumnName="TFS_GUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_USERS">
+            <EntityTypeMapping TypeName="METModel.T_USERS">
+              <MappingFragment StoreEntitySet="T_USERS">
+                <ScalarProperty Name="USER_SEQ" ColumnName="USER_SEQ" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="SYSTEM_SEQ" ColumnName="SYSTEM_SEQ" />
+                <ScalarProperty Name="USER_ROLE" ColumnName="USER_ROLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_WORK_COMPONENT">
+            <EntityTypeMapping TypeName="METModel.T_WORK_COMPONENT">
+              <MappingFragment StoreEntitySet="T_WORK_COMPONENT">
+                <ScalarProperty Name="TFS_WORK_ITEM_SEQ" ColumnName="TFS_WORK_ITEM_SEQ" />
+                <ScalarProperty Name="WORK_ITEM_SEQ" ColumnName="WORK_ITEM_SEQ" />
+                <ScalarProperty Name="COMPONENT_NAME" ColumnName="COMPONENT_NAME" />
+                <ScalarProperty Name="COMPONENT_SEQ" ColumnName="COMPONENT_SEQ" />
+                <ScalarProperty Name="COMPONENT_COUNT" ColumnName="COMPONENT_COUNT" />
+                <ScalarProperty Name="WORK_COMPONENT_SEQ" ColumnName="WORK_COMPONENT_SEQ" />
+                <ScalarProperty Name="UPDTD_BY" ColumnName="UPDTD_BY" />
+                <ScalarProperty Name="UPDTD_DTE" ColumnName="UPDTD_DTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_WORK_ITEM">
+            <EntityTypeMapping TypeName="METModel.T_WORK_ITEM">
+              <MappingFragment StoreEntitySet="T_WORK_ITEM">
+                <ScalarProperty Name="WORK_ITEM_SEQ" ColumnName="WORK_ITEM_SEQ" />
+                <ScalarProperty Name="RELEASE_SEQ" ColumnName="RELEASE_SEQ" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="TOTAL_HOURS" ColumnName="TOTAL_HOURS" />
+                <ScalarProperty Name="TOTAL_DEV_HOURS" ColumnName="TOTAL_DEV_HOURS" />
+                <ScalarProperty Name="TOTAL_DES_HOURS" ColumnName="TOTAL_DES_HOURS" />
+                <ScalarProperty Name="TFS_WI_ID" ColumnName="TFS_WI_ID" />
+                <ScalarProperty Name="TFS_WI_SEVERITY" ColumnName="TFS_WI_SEVERITY" />
+                <ScalarProperty Name="SYSTEM_SEQ" ColumnName="SYSTEM_SEQ" />
+                <ScalarProperty Name="SPRINT_SEQ" ColumnName="SPRINT_SEQ" />
+                <ScalarProperty Name="UPDTD_DTE" ColumnName="UPDTD_DTE" />
+                <ScalarProperty Name="UPDTD_BY" ColumnName="UPDTD_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_ASSIGNMENTS_HIST">
+            <EntityTypeMapping TypeName="METModel.T_ASSIGNMENTS_HIST">
+              <MappingFragment StoreEntitySet="T_ASSIGNMENTS_HIST">
+                <ScalarProperty Name="ASSIGNMENT_HIST_SEQ" ColumnName="ASSIGNMENT_HIST_SEQ" />
+                <ScalarProperty Name="ASSIGNMENT_SEQ" ColumnName="ASSIGNMENT_SEQ" />
+                <ScalarProperty Name="WORK_ITEM_SEQ" ColumnName="WORK_ITEM_SEQ" />
+                <ScalarProperty Name="USER_SEQ" ColumnName="USER_SEQ" />
+                <ScalarProperty Name="STATUS_CDE" ColumnName="STATUS_CDE" />
+                <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
+                <ScalarProperty Name="UPDTD_DTE" ColumnName="UPDTD_DTE" />
+                <ScalarProperty Name="UPDTD_BY" ColumnName="UPDTD_BY" />
+                <ScalarProperty Name="HIST_UPDTD_DTE" ColumnName="HIST_UPDTD_DTE" />
+                <ScalarProperty Name="HIST_UPDTD_BY" ColumnName="HIST_UPDTD_BY" />
+                <ScalarProperty Name="DUE_DATE" ColumnName="DUE_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_RELEASE_USER_ACCESS">
+            <EntityTypeMapping TypeName="METModel.T_RELEASE_USER_ACCESS">
+              <MappingFragment StoreEntitySet="T_RELEASE_USER_ACCESS">
+                <ScalarProperty Name="USER_SEQ" ColumnName="USER_SEQ" />
+                <ScalarProperty Name="RELEASE_SEQ" ColumnName="RELEASE_SEQ" />
+                <ScalarProperty Name="UPDTD_BY" ColumnName="UPDTD_BY" />
+                <ScalarProperty Name="UPDTD_DTE" ColumnName="UPDTD_DTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_SPRINT_USER_ACCESS">
+            <EntityTypeMapping TypeName="METModel.T_SPRINT_USER_ACCESS">
+              <MappingFragment StoreEntitySet="T_SPRINT_USER_ACCESS">
+                <ScalarProperty Name="USER_SEQ" ColumnName="USER_SEQ" />
+                <ScalarProperty Name="SPRINT_SEQ" ColumnName="SPRINT_SEQ" />
+                <ScalarProperty Name="UPDTD_BY" ColumnName="UPDTD_BY" />
+                <ScalarProperty Name="UPDTD_DTE" ColumnName="UPDTD_DTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="USP_RELEASE_GET_USER_LIST" FunctionName="METModel.Store.USP_RELEASE_GET_USER_LIST">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_RELEASE_GET_USER_LIST_Result">
+                <ScalarProperty Name="USER_SEQ" ColumnName="USER_SEQ" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_ASSIGNMENT_GET_ALL_STATUSES" FunctionName="METModel.Store.USP_ASSIGNMENT_GET_ALL_STATUSES" />
+          <FunctionImportMapping FunctionImportName="USP_ASSIGNMENT_GET_CURRENT" FunctionName="METModel.Store.USP_ASSIGNMENT_GET_CURRENT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_ASSIGNMENT_GET_CURRENT_Result">
+                <ScalarProperty Name="ASSIGNMENT_SEQ" ColumnName="ASSIGNMENT_SEQ" />
+                <ScalarProperty Name="WORK_ITEM_SEQ" ColumnName="WORK_ITEM_SEQ" />
+                <ScalarProperty Name="USER_SEQ" ColumnName="USER_SEQ" />
+                <ScalarProperty Name="STATUS_CDE" ColumnName="STATUS_CDE" />
+                <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
+                <ScalarProperty Name="UPDTD_DTE" ColumnName="UPDTD_DTE" />
+                <ScalarProperty Name="UPDTD_BY" ColumnName="UPDTD_BY" />
+                <ScalarProperty Name="DUE_DTE" ColumnName="DUE_DTE" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="STATUS_TEXT" ColumnName="STATUS_TEXT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_ASSIGNMENT_GET_HISTORY" FunctionName="METModel.Store.USP_ASSIGNMENT_GET_HISTORY">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_ASSIGNMENT_GET_HISTORY_Result">
+                <ScalarProperty Name="ASSIGNMENT_HIST_SEQ" ColumnName="ASSIGNMENT_HIST_SEQ" />
+                <ScalarProperty Name="ASSIGNMENT_SEQ" ColumnName="ASSIGNMENT_SEQ" />
+                <ScalarProperty Name="WORK_ITEM_SEQ" ColumnName="WORK_ITEM_SEQ" />
+                <ScalarProperty Name="USER_SEQ" ColumnName="USER_SEQ" />
+                <ScalarProperty Name="STATUS_CDE" ColumnName="STATUS_CDE" />
+                <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
+                <ScalarProperty Name="UPDTD_DTE" ColumnName="UPDTD_DTE" />
+                <ScalarProperty Name="UPDTD_BY" ColumnName="UPDTD_BY" />
+                <ScalarProperty Name="HIST_UPDTD_DTE" ColumnName="HIST_UPDTD_DTE" />
+                <ScalarProperty Name="HIST_UPDTD_BY" ColumnName="HIST_UPDTD_BY" />
+                <ScalarProperty Name="DUE_DATE" ColumnName="DUE_DATE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_ASSIGNMENT_SAVE_DETAILS" FunctionName="METModel.Store.USP_ASSIGNMENT_SAVE_DETAILS" />
+          <FunctionImportMapping FunctionImportName="USP_CLEAR_COMPONENT_CONFIG" FunctionName="METModel.Store.USP_CLEAR_COMPONENT_CONFIG" />
+          <FunctionImportMapping FunctionImportName="USP_COMPONENT_CONFIG_SAVE" FunctionName="METModel.Store.USP_COMPONENT_CONFIG_SAVE" />
+          <FunctionImportMapping FunctionImportName="USP_DELETE_ITEM_COMPONENT" FunctionName="METModel.Store.USP_DELETE_ITEM_COMPONENT" />
+          <FunctionImportMapping FunctionImportName="USP_GET_COMP_COMPLX_REF" FunctionName="METModel.Store.USP_GET_COMP_COMPLX_REF">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_GET_COMP_COMPLX_REF_Result">
+                <ScalarProperty Name="REFERENCE_SEQ" ColumnName="REFERENCE_SEQ" />
+                <ScalarProperty Name="GROUP_CODE" ColumnName="GROUP_CODE" />
+                <ScalarProperty Name="ENTITY_TEXT" ColumnName="ENTITY_TEXT" />
+                <ScalarProperty Name="ORDER_CDE" ColumnName="ORDER_CDE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GET_COMP_TYPE_REF" FunctionName="METModel.Store.USP_GET_COMP_TYPE_REF">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_GET_COMP_TYPE_REF_Result">
+                <ScalarProperty Name="REFERENCE_SEQ" ColumnName="REFERENCE_SEQ" />
+                <ScalarProperty Name="GROUP_CODE" ColumnName="GROUP_CODE" />
+                <ScalarProperty Name="ENTITY_TEXT" ColumnName="ENTITY_TEXT" />
+                <ScalarProperty Name="ORDER_CDE" ColumnName="ORDER_CDE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GET_COMPONENTS_FOR_ITEM" FunctionName="METModel.Store.USP_GET_COMPONENTS_FOR_ITEM">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_GET_COMPONENTS_FOR_ITEM_Result">
+                <ScalarProperty Name="COMPONENT_SEQ" ColumnName="COMPONENT_SEQ" />
+                <ScalarProperty Name="WORK_ITEM_SEQ" ColumnName="WORK_ITEM_SEQ" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="COMPLEXITY" ColumnName="COMPLEXITY" />
+                <ScalarProperty Name="MULTILINGUAL" ColumnName="MULTILINGUAL" />
+                <ScalarProperty Name="RELEASE_SEQ" ColumnName="RELEASE_SEQ" />
+                <ScalarProperty Name="COMPLEXITY_TEXT" ColumnName="COMPLEXITY_TEXT" />
+                <ScalarProperty Name="TYPE_TEXT" ColumnName="TYPE_TEXT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GET_CONFIG_VALUES" FunctionName="METModel.Store.USP_GET_CONFIG_VALUES">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_GET_CONFIG_VALUES_Result">
+                <ScalarProperty Name="CONFIG_SEQ" ColumnName="CONFIG_SEQ" />
+                <ScalarProperty Name="SYSTEM_SEQ" ColumnName="SYSTEM_SEQ" />
+                <ScalarProperty Name="CONFIG_NAME" ColumnName="CONFIG_NAME" />
+                <ScalarProperty Name="CONFIG_DETAIL_SEQ" ColumnName="CONFIG_DETAIL_SEQ" />
+                <ScalarProperty Name="CONFIG_SEQ1" ColumnName="CONFIG_SEQ1" />
+                <ScalarProperty Name="COMPLEXITY" ColumnName="COMPLEXITY" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+                <ScalarProperty Name="TypeText" ColumnName="TypeText" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GET_ITEM_COMPONENTS" FunctionName="METModel.Store.USP_GET_ITEM_COMPONENTS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_GET_ITEM_COMPONENTS_Result">
+                <ScalarProperty Name="COMPONENT_SEQ" ColumnName="COMPONENT_SEQ" />
+                <ScalarProperty Name="WORK_ITEM_SEQ" ColumnName="WORK_ITEM_SEQ" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="COMPLEXITY" ColumnName="COMPLEXITY" />
+                <ScalarProperty Name="MULTILINGUAL" ColumnName="MULTILINGUAL" />
+                <ScalarProperty Name="RELEASE_SEQ" ColumnName="RELEASE_SEQ" />
+                <ScalarProperty Name="COMPLEXITY_TEXT" ColumnName="COMPLEXITY_TEXT" />
+                <ScalarProperty Name="TYPE_TEXT" ColumnName="TYPE_TEXT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GET_WORK_ITEM" FunctionName="METModel.Store.USP_GET_WORK_ITEM">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_GET_WORK_ITEM_Result">
+                <ScalarProperty Name="WORK_ITEM_SEQ" ColumnName="WORK_ITEM_SEQ" />
+                <ScalarProperty Name="RELEASE_SEQ" ColumnName="RELEASE_SEQ" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="TOTAL_HOURS" ColumnName="TOTAL_HOURS" />
+                <ScalarProperty Name="TOTAL_DEV_HOURS" ColumnName="TOTAL_DEV_HOURS" />
+                <ScalarProperty Name="TOTAL_DES_HOURS" ColumnName="TOTAL_DES_HOURS" />
+                <ScalarProperty Name="TFS_WI_ID" ColumnName="TFS_WI_ID" />
+                <ScalarProperty Name="TFS_WI_SEVERITY" ColumnName="TFS_WI_SEVERITY" />
+                <ScalarProperty Name="SYSTEM_SEQ" ColumnName="SYSTEM_SEQ" />
+                <ScalarProperty Name="SPRINT_SEQ" ColumnName="SPRINT_SEQ" />
+                <ScalarProperty Name="UPDTD_DTE" ColumnName="UPDTD_DTE" />
+                <ScalarProperty Name="UPDTD_BY" ColumnName="UPDTD_BY" />
+                <ScalarProperty Name="RELEASE_NAME" ColumnName="RELEASE_NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_INSERT_ITEM_COMPONENTS" FunctionName="METModel.Store.USP_INSERT_ITEM_COMPONENTS" />
+          <FunctionImportMapping FunctionImportName="USP_INSERT_WORK_ITEM" FunctionName="METModel.Store.USP_INSERT_WORK_ITEM" />
+          <FunctionImportMapping FunctionImportName="USP_LANDING_GET_NON_TFS_RELEASE_LIST" FunctionName="METModel.Store.USP_LANDING_GET_NON_TFS_RELEASE_LIST">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_LANDING_GET_NON_TFS_RELEASE_LIST_Result">
+                <ScalarProperty Name="RELEASE_NBR" ColumnName="RELEASE_NBR" />
+                <ScalarProperty Name="RELEASE_SEQ" ColumnName="RELEASE_SEQ" />
+                <ScalarProperty Name="TFS_RELEASE_ID" ColumnName="TFS_RELEASE_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_LANDING_GET_RELEASE_LIST" FunctionName="METModel.Store.USP_LANDING_GET_RELEASE_LIST">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_LANDING_GET_RELEASE_LIST_Result">
+                <ScalarProperty Name="RELEASE_SEQ" ColumnName="RELEASE_SEQ" />
+                <ScalarProperty Name="RELEASE_NBR" ColumnName="RELEASE_NBR" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_LANDING_GET_SYSTEM_LIST" FunctionName="METModel.Store.USP_LANDING_GET_SYSTEM_LIST">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_LANDING_GET_SYSTEM_LIST_Result">
+                <ScalarProperty Name="SYSTEM_SEQ" ColumnName="SYSTEM_SEQ" />
+                <ScalarProperty Name="SYSTEM_NAME" ColumnName="SYSTEM_NAME" />
+                <ScalarProperty Name="TFS_GUID" ColumnName="TFS_GUID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_LANDING_SEARCH_RELEASE" FunctionName="METModel.Store.USP_LANDING_SEARCH_RELEASE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_LANDING_SEARCH_RELEASE_Result">
+                <ScalarProperty Name="RELEASE_SEQ" ColumnName="RELEASE_SEQ" />
+                <ScalarProperty Name="RELEASE_NBR" ColumnName="RELEASE_NBR" />
+                <ScalarProperty Name="SYSTEM_SEQ" ColumnName="SYSTEM_SEQ" />
+                <ScalarProperty Name="UAT_KICK_OFF" ColumnName="UAT_KICK_OFF" />
+                <ScalarProperty Name="NBR_PLAYBOOK" ColumnName="NBR_PLAYBOOK" />
+                <ScalarProperty Name="NBR_ENVIRONMENT" ColumnName="NBR_ENVIRONMENT" />
+                <ScalarProperty Name="NBR_BUILDS" ColumnName="NBR_BUILDS" />
+                <ScalarProperty Name="NBR_DEPLOYMENTS" ColumnName="NBR_DEPLOYMENTS" />
+                <ScalarProperty Name="NBR_PLAYBOOK_MEETING" ColumnName="NBR_PLAYBOOK_MEETING" />
+                <ScalarProperty Name="NBR_DB_REFRESH" ColumnName="NBR_DB_REFRESH" />
+                <ScalarProperty Name="NBR_SECURITY_SUPPORT_HOUR" ColumnName="NBR_SECURITY_SUPPORT_HOUR" />
+                <ScalarProperty Name="NBR_LOAD_TEST" ColumnName="NBR_LOAD_TEST" />
+                <ScalarProperty Name="NBR_BATCH_VOLUME_TEST" ColumnName="NBR_BATCH_VOLUME_TEST" />
+                <ScalarProperty Name="NBR_SECURITY_TEST" ColumnName="NBR_SECURITY_TEST" />
+                <ScalarProperty Name="NBR_DESIGN_SESSION" ColumnName="NBR_DESIGN_SESSION" />
+                <ScalarProperty Name="NBR_ARCHITECTURE_REVIEW" ColumnName="NBR_ARCHITECTURE_REVIEW" />
+                <ScalarProperty Name="TFS_RELEASE_ID" ColumnName="TFS_RELEASE_ID" />
+                <ScalarProperty Name="UPDTD_BY" ColumnName="UPDTD_BY" />
+                <ScalarProperty Name="UPDTD_DTE" ColumnName="UPDTD_DTE" />
+                <ScalarProperty Name="IsExistingRelease" ColumnName="IsExistingRelease" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_LANDING_SEARCH_SYSTEM" FunctionName="METModel.Store.USP_LANDING_SEARCH_SYSTEM">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_LANDING_SEARCH_SYSTEM_Result">
+                <ScalarProperty Name="SYSTEM_SEQ" ColumnName="SYSTEM_SEQ" />
+                <ScalarProperty Name="SYSTEM_NAME" ColumnName="SYSTEM_NAME" />
+                <ScalarProperty Name="TFS_GUID" ColumnName="TFS_GUID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_RELEASE_DELETE_WORK_ITEM" FunctionName="METModel.Store.USP_RELEASE_DELETE_WORK_ITEM" />
+          <FunctionImportMapping FunctionImportName="USP_RELEASE_GENERATE_REPORT" FunctionName="METModel.Store.USP_RELEASE_GENERATE_REPORT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_RELEASE_GENERATE_REPORT_Result">
+                <ScalarProperty Name="TFS_WI_ID" ColumnName="TFS_WI_ID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="TFS_WI_SEVERITY" ColumnName="TFS_WI_SEVERITY" />
+                <ScalarProperty Name="WI_STORY_POINTS" ColumnName="WI_STORY_POINTS" />
+                <ScalarProperty Name="WI_TOTAL_COUNT" ColumnName="WI_TOTAL_COUNT" />
+                <ScalarProperty Name="COMPONENT_COUNT" ColumnName="COMPONENT_COUNT" />
+                <ScalarProperty Name="COMPONENT_NAME" ColumnName="COMPONENT_NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_RELEASE_GET_ATTRIBUTE_LIST" FunctionName="METModel.Store.USP_RELEASE_GET_ATTRIBUTE_LIST">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_RELEASE_GET_ATTRIBUTE_LIST_Result">
+                <ScalarProperty Name="COMPONENT_SEQ" ColumnName="COMPONENT_SEQ" />
+                <ScalarProperty Name="WORK_ITEM_SEQ" ColumnName="WORK_ITEM_SEQ" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="COMPLEXITY" ColumnName="COMPLEXITY" />
+                <ScalarProperty Name="MULTILINGUAL" ColumnName="MULTILINGUAL" />
+                <ScalarProperty Name="RELEASE_SEQ" ColumnName="RELEASE_SEQ" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_RELEASE_GET_RELEASE_META" FunctionName="METModel.Store.USP_RELEASE_GET_RELEASE_META">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_RELEASE_GET_RELEASE_META_Result">
+                <ScalarProperty Name="RELEASE_SEQ" ColumnName="RELEASE_SEQ" />
+                <ScalarProperty Name="RELEASE_NBR" ColumnName="RELEASE_NBR" />
+                <ScalarProperty Name="SYSTEM_SEQ" ColumnName="SYSTEM_SEQ" />
+                <ScalarProperty Name="UAT_KICK_OFF" ColumnName="UAT_KICK_OFF" />
+                <ScalarProperty Name="NBR_PLAYBOOK" ColumnName="NBR_PLAYBOOK" />
+                <ScalarProperty Name="NBR_ENVIRONMENT" ColumnName="NBR_ENVIRONMENT" />
+                <ScalarProperty Name="NBR_BUILDS" ColumnName="NBR_BUILDS" />
+                <ScalarProperty Name="NBR_DEPLOYMENTS" ColumnName="NBR_DEPLOYMENTS" />
+                <ScalarProperty Name="NBR_PLAYBOOK_MEETING" ColumnName="NBR_PLAYBOOK_MEETING" />
+                <ScalarProperty Name="NBR_DB_REFRESH" ColumnName="NBR_DB_REFRESH" />
+                <ScalarProperty Name="NBR_SECURITY_SUPPORT_HOUR" ColumnName="NBR_SECURITY_SUPPORT_HOUR" />
+                <ScalarProperty Name="NBR_LOAD_TEST" ColumnName="NBR_LOAD_TEST" />
+                <ScalarProperty Name="NBR_BATCH_VOLUME_TEST" ColumnName="NBR_BATCH_VOLUME_TEST" />
+                <ScalarProperty Name="NBR_SECURITY_TEST" ColumnName="NBR_SECURITY_TEST" />
+                <ScalarProperty Name="NBR_DESIGN_SESSION" ColumnName="NBR_DESIGN_SESSION" />
+                <ScalarProperty Name="NBR_ARCHITECTURE_REVIEW" ColumnName="NBR_ARCHITECTURE_REVIEW" />
+                <ScalarProperty Name="TFS_RELEASE_ID" ColumnName="TFS_RELEASE_ID" />
+                <ScalarProperty Name="UPDTD_BY" ColumnName="UPDTD_BY" />
+                <ScalarProperty Name="UPDTD_DTE" ColumnName="UPDTD_DTE" />
+                <ScalarProperty Name="PROJECT_NAME" ColumnName="PROJECT_NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_RELEASE_GET_WORK_ITEM_COMPONENT" FunctionName="METModel.Store.USP_RELEASE_GET_WORK_ITEM_COMPONENT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_RELEASE_GET_WORK_ITEM_COMPONENT_Result">
+                <ScalarProperty Name="COMPONENT_SEQ" ColumnName="COMPONENT_SEQ" />
+                <ScalarProperty Name="WORK_ITEM_SEQ" ColumnName="WORK_ITEM_SEQ" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="COMPLEXITY" ColumnName="COMPLEXITY" />
+                <ScalarProperty Name="MULTILINGUAL" ColumnName="MULTILINGUAL" />
+                <ScalarProperty Name="RELEASE_SEQ" ColumnName="RELEASE_SEQ" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_RELEASE_GET_WORK_ITEM_LIST" FunctionName="METModel.Store.USP_RELEASE_GET_WORK_ITEM_LIST">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_RELEASE_GET_WORK_ITEM_LIST_Result">
+                <ScalarProperty Name="WORK_ITEM_SEQ" ColumnName="WORK_ITEM_SEQ" />
+                <ScalarProperty Name="RELEASE_SEQ" ColumnName="RELEASE_SEQ" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="TOTAL_HOURS" ColumnName="TOTAL_HOURS" />
+                <ScalarProperty Name="TOTAL_DEV_HOURS" ColumnName="TOTAL_DEV_HOURS" />
+                <ScalarProperty Name="TOTAL_DES_HOURS" ColumnName="TOTAL_DES_HOURS" />
+                <ScalarProperty Name="TFS_WI_ID" ColumnName="TFS_WI_ID" />
+                <ScalarProperty Name="TFS_WI_SEVERITY" ColumnName="TFS_WI_SEVERITY" />
+                <ScalarProperty Name="SYSTEM_SEQ" ColumnName="SYSTEM_SEQ" />
+                <ScalarProperty Name="SPRINT_SEQ" ColumnName="SPRINT_SEQ" />
+                <ScalarProperty Name="UPDTD_DTE" ColumnName="UPDTD_DTE" />
+                <ScalarProperty Name="UPDTD_BY" ColumnName="UPDTD_BY" />
+                <ScalarProperty Name="ASSIGNMENT" ColumnName="ASSIGNMENT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_RELEASE_SAVE_NON_TFS" FunctionName="METModel.Store.USP_RELEASE_SAVE_NON_TFS" />
+          <FunctionImportMapping FunctionImportName="USP_RELEASE_SAVE_RELEASE_META" FunctionName="METModel.Store.USP_RELEASE_SAVE_RELEASE_META" />
+          <FunctionImportMapping FunctionImportName="USP_SAVE_ITEM_HOURS" FunctionName="METModel.Store.USP_SAVE_ITEM_HOURS" />
+          <FunctionImportMapping FunctionImportName="USP_SAVE_WORK_ITEM_RELEASE" FunctionName="METModel.Store.USP_SAVE_WORK_ITEM_RELEASE" />
+          <FunctionImportMapping FunctionImportName="USP_SYSTEM_GET_RECORD" FunctionName="METModel.Store.USP_SYSTEM_GET_RECORD">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_SYSTEM_GET_RECORD_Result">
+                <ScalarProperty Name="SYSTEM_SEQ" ColumnName="SYSTEM_SEQ" />
+                <ScalarProperty Name="SYSTEM_NAME" ColumnName="SYSTEM_NAME" />
+                <ScalarProperty Name="TFS_GUID" ColumnName="TFS_GUID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_TABLEHELP_GET_REF_GROUP" FunctionName="METModel.Store.USP_TABLEHELP_GET_REF_GROUP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_TABLEHELP_GET_REF_GROUP_Result">
+                <ScalarProperty Name="REFERENCE_SEQ" ColumnName="REFERENCE_SEQ" />
+                <ScalarProperty Name="GROUP_CODE" ColumnName="GROUP_CODE" />
+                <ScalarProperty Name="ENTITY_TEXT" ColumnName="ENTITY_TEXT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_TABLEHELP_GET_REF_VALUES" FunctionName="METModel.Store.USP_TABLEHELP_GET_REF_VALUES">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_TABLEHELP_GET_REF_VALUES_Result">
+                <ScalarProperty Name="REFERENCE_SEQ" ColumnName="REFERENCE_SEQ" />
+                <ScalarProperty Name="GROUP_CODE" ColumnName="GROUP_CODE" />
+                <ScalarProperty Name="ENTITY_TEXT" ColumnName="ENTITY_TEXT" />
+                <ScalarProperty Name="ORDER_CDE" ColumnName="ORDER_CDE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_TABLEHELP_GET_REFSEQ" FunctionName="METModel.Store.USP_TABLEHELP_GET_REFSEQ" />
+          <FunctionImportMapping FunctionImportName="USP_TABLEHELP_GET_REFVALUE" FunctionName="METModel.Store.USP_TABLEHELP_GET_REFVALUE" />
+          <FunctionImportMapping FunctionImportName="USP_TABLEHELP_GET_SYSTEMNAME" FunctionName="METModel.Store.USP_TABLEHELP_GET_SYSTEMNAME" />
+          <FunctionImportMapping FunctionImportName="USP_TABLEHELP_GET_TFSID" FunctionName="METModel.Store.USP_TABLEHELP_GET_TFSID" />
+          <FunctionImportMapping FunctionImportName="USP_TABLEHELP_GET_TFSID_SYSTEM" FunctionName="METModel.Store.USP_TABLEHELP_GET_TFSID_SYSTEM" />
+          <FunctionImportMapping FunctionImportName="USP_TABLEHELP_GET_USERNAME" FunctionName="METModel.Store.USP_TABLEHELP_GET_USERNAME" />
+          <FunctionImportMapping FunctionImportName="USP_UPDATE_ITEM_COMPONENTS" FunctionName="METModel.Store.USP_UPDATE_ITEM_COMPONENTS" />
+          <FunctionImportMapping FunctionImportName="USP_USER_DELETE_DATA" FunctionName="METModel.Store.USP_USER_DELETE_DATA" />
+          <FunctionImportMapping FunctionImportName="USP_USER_GET_DATA" FunctionName="METModel.Store.USP_USER_GET_DATA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_USER_GET_DATA_Result">
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="SYSTEM_SEQ" ColumnName="SYSTEM_SEQ" />
+                <ScalarProperty Name="USER_ROLE" ColumnName="USER_ROLE" />
+                <ScalarProperty Name="ENTITY_TEXT" ColumnName="ENTITY_TEXT" />
+                <ScalarProperty Name="SYSTEM_NAME" ColumnName="SYSTEM_NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_USER_GET_PROJECT_LIST" FunctionName="METModel.Store.USP_USER_GET_PROJECT_LIST">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_USER_GET_PROJECT_LIST_Result">
+                <ScalarProperty Name="SYSTEM_SEQ" ColumnName="SYSTEM_SEQ" />
+                <ScalarProperty Name="SYSTEM_NAME" ColumnName="SYSTEM_NAME" />
+                <ScalarProperty Name="TFS_GUID" ColumnName="TFS_GUID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_USER_GET_SEARCH_ITEMS" FunctionName="METModel.Store.USP_USER_GET_SEARCH_ITEMS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_USER_GET_SEARCH_ITEMS_Result">
+                <ScalarProperty Name="WORK_ITEM_SEQ" ColumnName="WORK_ITEM_SEQ" />
+                <ScalarProperty Name="RELEASE_SEQ" ColumnName="RELEASE_SEQ" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="TOTAL_HOURS" ColumnName="TOTAL_HOURS" />
+                <ScalarProperty Name="TOTAL_DEV_HOURS" ColumnName="TOTAL_DEV_HOURS" />
+                <ScalarProperty Name="TOTAL_DES_HOURS" ColumnName="TOTAL_DES_HOURS" />
+                <ScalarProperty Name="TFS_WI_ID" ColumnName="TFS_WI_ID" />
+                <ScalarProperty Name="TFS_WI_SEVERITY" ColumnName="TFS_WI_SEVERITY" />
+                <ScalarProperty Name="SYSTEM_SEQ" ColumnName="SYSTEM_SEQ" />
+                <ScalarProperty Name="SPRINT_SEQ" ColumnName="SPRINT_SEQ" />
+                <ScalarProperty Name="UPDTD_DTE" ColumnName="UPDTD_DTE" />
+                <ScalarProperty Name="UPDTD_BY" ColumnName="UPDTD_BY" />
+                <ScalarProperty Name="RELEASE_NAME" ColumnName="RELEASE_NAME" />
+                <ScalarProperty Name="ASSIGNMENT" ColumnName="ASSIGNMENT" />
+                <ScalarProperty Name="ASSIGNMENT_STATUS" ColumnName="ASSIGNMENT_STATUS" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_USER_GET_USER_ITEMS" FunctionName="METModel.Store.USP_USER_GET_USER_ITEMS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_USER_GET_USER_ITEMS_Result">
+                <ScalarProperty Name="WORK_ITEM_SEQ" ColumnName="WORK_ITEM_SEQ" />
+                <ScalarProperty Name="RELEASE_SEQ" ColumnName="RELEASE_SEQ" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="TOTAL_HOURS" ColumnName="TOTAL_HOURS" />
+                <ScalarProperty Name="TOTAL_DEV_HOURS" ColumnName="TOTAL_DEV_HOURS" />
+                <ScalarProperty Name="TOTAL_DES_HOURS" ColumnName="TOTAL_DES_HOURS" />
+                <ScalarProperty Name="TFS_WI_ID" ColumnName="TFS_WI_ID" />
+                <ScalarProperty Name="TFS_WI_SEVERITY" ColumnName="TFS_WI_SEVERITY" />
+                <ScalarProperty Name="SYSTEM_SEQ" ColumnName="SYSTEM_SEQ" />
+                <ScalarProperty Name="SPRINT_SEQ" ColumnName="SPRINT_SEQ" />
+                <ScalarProperty Name="UPDTD_DTE" ColumnName="UPDTD_DTE" />
+                <ScalarProperty Name="UPDTD_BY" ColumnName="UPDTD_BY" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_USER_GET_USER_LIST" FunctionName="METModel.Store.USP_USER_GET_USER_LIST">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="METModel.USP_USER_GET_USER_LIST_Result">
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="SYSTEM_SEQ" ColumnName="SYSTEM_SEQ" />
+                <ScalarProperty Name="USER_ROLE" ColumnName="USER_ROLE" />
+                <ScalarProperty Name="ENTITY_TEXT" ColumnName="ENTITY_TEXT" />
+                <ScalarProperty Name="SYSTEM_NAME" ColumnName="SYSTEM_NAME" />
+                <ScalarProperty Name="USER_SEQ" ColumnName="USER_SEQ" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_USER_SAVE_DATA" FunctionName="METModel.Store.USP_USER_SAVE_DATA" />
+          <FunctionImportMapping FunctionImportName="USP_USER_SAVE_USER_ASSIGNMENT" FunctionName="METModel.Store.USP_USER_SAVE_USER_ASSIGNMENT" />
+          <FunctionImportMapping FunctionImportName="USP_USER_UPDATE_DATA" FunctionName="METModel.Store.USP_USER_UPDATE_DATA" />
+          <FunctionImportMapping FunctionImportName="USP_WORK_ITEM_UPDATE_ASSIGNMENT" FunctionName="METModel.Store.USP_WORK_ITEM_UPDATE_ASSIGNMENT" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,549 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts {
+    <script src="~/Scripts/Angular/MyRelease.js"></script>
+}
+<div class="right_col" role="main" ng-controller="myReleaseDetails">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>View a Release</h3>
+            </div>
+
+
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>{{releaseDetailsdata.RELEASE_NBR}}<small>Details and % Estimated</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">Settings 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+
+                        <div class="row">
+
+                            <div class="col-md-8">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Release Details</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li>
+                                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown"><i class="fa fa-wrench"></i></a>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li>
+                                                        <a href="#">Settings 1</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Settings 2</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <div class="row">
+                                            <br /><br />
+                                            <div class="col-xs-6">
+                                                <article class="media event">
+                                                    <a class="pull-left date" style="width:75px">
+                                                        <p class="month"># of tasks</p>
+                                                        <p class="day">{{releaseDetailsdata.NoOfWorkItems}}</p>
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <a class="title" href="#"><h2>Tasks in {{releaseDetailsdata.RELEASE_NBR}}</h2></a>
+                                                    </div>
+                                                </article>
+                                                <article class="media event">
+                                                    <a class="pull-left date" style="width:75px">
+                                                        <p class="month"># of tasks</p>
+                                                        <p class="day">{{releaseDetailsdata.NoOfPendingWokrItems}}</p>
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <a class="title" href="#"><h2>Remaining Tasks to be Estimated</h2></a>
+                                                    </div>
+                                                </article>
+                                            </div>
+
+                                            <div class="col-xs-6">
+                                                <article class="media event">
+                                                    <a class="pull-left date" style="width:75px">
+                                                        <p class="month"># Sprints</p>
+                                                        <p class="day">{{releaseDetailsdata.NoOfSprints}}</p>
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <a class="title" href="#"><h2>Total Sprints</h2></a>
+                                                    </div>
+                                                </article>
+                                                <article class="media event">
+                                                    <a class="pull-left date" style="width:75px">
+                                                        <p class="month"># of hours</p>
+                                                        <p class="day">{{releaseDetailsdata.TotalEffortHours}}</p>
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <a class="title" href="#"><h2>Total Effort</h2></a>
+                                                    </div>
+                                                </article>
+                                            </div>
+                                            <br />
+                                        </div>
+                                        <div class="row">
+                                            <br /><br />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4 col-xs-12 widget widget_tally_box">
+                                <div class="x_panel">
+
+                                    <div class="x_title">
+                                        <h2>Release 31.5</h2>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content" style="text-align:center;">
+
+                                        <img class="thumbnail zoom" src="~/images/story.PNG" width="255" height="255" />
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hidden">
+                                <div class="col-md-6">
+                                    <div class="x_panel">
+                                        <div class="x_content">
+                                            <canvas id="pieChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>{{releaseDetailsdata.RELEASE_NBR}}</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+
+
+
+
+
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li>
+                                <a data-toggle="modal" data-target=".bs-addrelease-modal-lg"><i class="fa fa-edit"></i></a>
+                            </li>
+                            @*<li>
+                                <a data-toggle="modal" data-target=".bs-addrelease-modal-lg"><i class="fa fa-plus"></i></a>
+                            </li>*@
+
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+
+                        <div class="row">
+
+
+                            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+
+
+
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+
+                                            <th>Playbooks</th>
+                                            <td>{{releaseDetailsdata.NBR_PLAYBOOK}}</td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <th>Environments</th>
+                                            <td>{{releaseDetailsdata.NBR_ENVIRONMENT}}</td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <th>Builds</th>
+                                            <td>{{releaseDetailsdata.NBR_BUILDS}}</td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <th>Deployments</th>
+                                            <td>{{releaseDetailsdata.NBR_DEPLOYMENTS}}</td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+
+
+
+                            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+
+
+
+                                <table class="table">
+                                    <tbody>
+
+
+                                        <tr>
+
+                                            <th>Playbook Meetings</th>
+                                            <td>{{releaseDetailsdata.NBR_PLAYBOOK_MEETING}}</td>
+
+                                        </tr>
+                                        <tr>
+
+
+                                            <th>Database Refreshes</th>
+                                            <td>{{releaseDetailsdata.NBR_DB_REFRESH}}</td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <th>Security Support Hours</th>
+                                            <td>{{releaseDetailsdata.NBR_SECURITY_SUPPORT_HOUR}}</td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <th>Load Tests</th>
+                                            <td>{{releaseDetailsdata.NBR_LOAD_TEST}}</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+
+
+
+                                <table class="table">
+                                    <tbody>
+
+
+                                        <tr>
+
+                                            <th>Batch Volume Tests</th>
+                                            <td>{{releaseDetailsdata.NBR_BATCH_VOLUME_TEST}}</td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <th>Security Vulnerability Tests</th>
+                                            <td>{{releaseDetailsdata.NBR_SECURITY_TEST}}</td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <th>Design Hours</th>
+                                            <td>{{releaseDetailsdata.NBR_DESIGN_SESSION}}</td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <th>Architecture Reviews</th>
+                                            <td>{{releaseDetailsdata.NBR_ARCHITECTURE_REVIEW}}</td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+
+
+
+
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <br />
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+                <div class="x_panel">
+
+                    <div class="x_title">
+                        <h2 style="padding-left:5px;">Sprint Information </h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li>
+                                <a data-toggle="modal" data-target=".bs-addrelease-modal-lg"><i class="fa fa-plus"></i></a>
+                            </li>
+
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content" ng-repeat="x in releaseDetailsdata.Sprints">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2><a href="ES_ViewEdit.html">{{x.SPRINT_NAME}}</a> </h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a data-toggle="modal" data-target=".bs-addrelease2-modal-lg" role="button" aria-expanded="false"><i class="fa fa-plus"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <table id="datatable" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <td scope="col">Edit</td>
+                                            <td scope="col">
+                                                Select: <input type="checkbox" name="ctl00$page_viewport$grdWorkItems$ctl01$grdAssignAll" />
+                                            </td>
+
+                                            <td scope="col">Work Item</td>
+                                            <td scope="col">Work Item Description</td>
+                                            <td scope="col">Type</td>
+                                            <td scope="col">Severity</td>
+                                            <td scope="col">Story Points</td>
+
+                                        </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                        <tr class="release_gridrow" ng-repeat="y in x.SprintWorkItems">
+                                            <td><a href="EW_ViewEdit.html"><i class="fa fa-edit"></a></td>
+                                            <td>
+                                                <input id="page_viewport_grdWorkItems_chkAssignItem_0" type="checkbox" name="ctl00$page_viewport$grdWorkItems$ctl02$chkAssignItem" />
+                                            </td>
+                                            <td>
+                                                <a id="page_viewport_grdWorkItems_lbtGoToWorkItem_0" href="javascript:__doPostBack(&#39;ctl00$page_viewport$grdWorkItems$ctl02$lbtGoToWorkItem&#39;,&#39;&#39;)">{{y.TFS_WI_ID}}</a>
+                                            </td>
+                                            <td align="center">
+                                                <span id="page_viewport_grdWorkItems_lblWorkItemType_0">{{y.TYPE}}</span>
+                                            </td>
+                                            <td align="center">
+                                                <span id="page_viewport_grdWorkItems_lblWorkItemSeverity_0">{{y.TFS_WI_SEVERITY}}</span>
+                                            </td>
+                                            <td>
+                                                <span id="page_viewport_grdWorkItems_lblWorkItemDescription_0">{{y.TITLE}}</span>
+                                            </td>
+                                            <td align="center">
+                                                <span id="page_viewport_grdWorkItems_lblWorkItemTotalHrs_0">{{x.NBR_STORY_POINTS}}</span>
+                                            </td>
+                                        </tr>
+                                      
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                        @*<div class="x_panel">
+                            <div class="x_title">
+                                <h2><a href="ES_ViewEdit.html">Sprint 2 - Duration : 11/26/2016 to 01/10/2017 - Total Story Points- 20 </a></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a data-toggle="modal" data-target=".bs-addrelease2-modal-lg" role="button" aria-expanded="false"><i class="fa fa-plus"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <table id="datatable" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <td scope="col">Edit</td>
+                                            <td scope="col">
+                                                Select: <input type="checkbox" name="ctl00$page_viewport$grdWorkItems$ctl01$grdAssignAll" />
+                                            </td>
+
+                                            <td scope="col">Work Item</td>
+                                            <td scope="col">Work Item Description</td>
+                                            <td scope="col">Type</td>
+                                            <td scope="col">Severity</td>
+                                            <td scope="col">Story Points</td>
+
+                                        </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                        <tr class="release_gridrow">
+                                            <td><a href="EW_ViewEdit.html"><i class="fa fa-edit"></a></td>
+                                            <td>
+                                                <input id="page_viewport_grdWorkItems_chkAssignItem_0" type="checkbox" name="ctl00$page_viewport$grdWorkItems$ctl02$chkAssignItem" />
+                                            </td>
+                                            <td>
+                                                <a id="page_viewport_grdWorkItems_lbtGoToWorkItem_0" href="javascript:__doPostBack(&#39;ctl00$page_viewport$grdWorkItems$ctl02$lbtGoToWorkItem&#39;,&#39;&#39;)">1106905</a>
+                                            </td>
+                                            <td align="center">
+                                                <span id="page_viewport_grdWorkItems_lblWorkItemType_0">Bug</span>
+                                            </td>
+                                            <td align="center">
+                                                <span id="page_viewport_grdWorkItems_lblWorkItemSeverity_0">3 - Minor</span>
+                                            </td>
+                                            <td>
+                                                <span id="page_viewport_grdWorkItems_lblWorkItemDescription_0">Move the COMPASS renewal to errorred section on Mange Renewal page if a paper renewal is already initiated. (CAPS PCR:7999)</span>
+                                            </td>
+                                            <td align="center">
+                                                <span id="page_viewport_grdWorkItems_lblWorkItemTotalHrs_0">5</span>
+                                            </td>
+
+                                        </tr>
+                                       
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Work Items</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a data-toggle="modal" data-target=".bs-addrelease2-modal-lg" role="button" aria-expanded="false"><i class="fa fa-plus"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <table id="datatable" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <td scope="col">Edit</td>
+                                    <td scope="col">
+                                        Select: <input type="checkbox" name="ctl00$page_viewport$grdWorkItems$ctl01$grdAssignAll" />
+                                    </td>
+                                    <td class="col-md-1" align="center">Work Item Number</td>
+                                    <td class="col-md-1" align="center">Type</a></td>
+                                    <td class="col-md-2" align="center">Severity</td>
+                                    <td class="col-md-5" align="center">Description</td>
+                                    <td class="col-md-2" align="center">Total Hours</td>
+                                    <td class="col-md-2" align="center">Sprint</td>
+                                </tr>
+                            </thead>
+
+
+                            <tbody>
+                                <tr class="release_gridrow" ng-repeat="x in releaseDetailsdata.WorkItems">
+                                    <td><a href="EW_ViewEdit.html"><i class="fa fa-edit"></a></td>
+                                    <td>
+                                        <input id="page_viewport_grdWorkItems_chkAssignItem_0" type="checkbox" name="ctl00$page_viewport$grdWorkItems$ctl02$chkAssignItem" />
+                                    </td>
+                                    <td>
+                                        <a id="page_viewport_grdWorkItems_lbtGoToWorkItem_0" href="javascript:__doPostBack(&#39;ctl00$page_viewport$grdWorkItems$ctl02$lbtGoToWorkItem&#39;,&#39;&#39;)">{{x.TFS_WI_ID}}</a>
+                                    </td>
+                                    <td align="center">
+                                        <span id="page_viewport_grdWorkItems_lblWorkItemType_0">{{x.TYPE}}</span>
+                                    </td>
+                                    <td align="center">
+                                        <span id="page_viewport_grdWorkItems_lblWorkItemSeverity_0">{{x.TFS_WI_SEVERITY}}</span>
+                                    </td>
+                                    <td>
+                                        <span id="page_viewport_grdWorkItems_lblWorkItemDescription_0">{{x.TITLE}}</span>
+                                    </td>
+                                    <td align="center">
+                                        <span id="page_viewport_grdWorkItems_lblWorkItemTotalHrs_0">{{x.TOTAL_HOURS}}</span>
+                                    </td>
+                                    <td align="center">
+                                        <span id="page_viewport_grdWorkItems_lblWorkItemAssignment_0">{{x.STATUS_CDE}}</span>
+                                    </td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="clearfix"> </div>
+
+
+
+    </div>
+</div>
+

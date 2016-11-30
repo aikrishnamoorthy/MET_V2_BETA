@@ -120,7 +120,7 @@ namespace MET.BUSINESS.WEBAPI.Models
                 newModel.UPDTD_DTE = item.UPDTD_DTE;
                 newModel.WORK_ITEM_SEQ = item.WORK_ITEM_SEQ;
                 newModel.STATUS_CDE = item.T_ASSIGNMENTS.OrderByDescending(x => x.UPDTD_DTE).FirstOrDefault() != null ? item.T_ASSIGNMENTS.OrderByDescending(x => x.UPDTD_DTE).FirstOrDefault().STATUS_CDE : 0;
-                newModel.Assignments = item.T_ASSIGNMENTS.OrderByDescending(x => x.UPDTD_DTE).ToList();
+                //newModel.Assignments = item.T_ASSIGNMENTS.OrderByDescending(x => x.UPDTD_DTE).ToList(); :TODO create assignmentmodel else serialization error will occur
 
                 locallist.Add(newModel);
             }
